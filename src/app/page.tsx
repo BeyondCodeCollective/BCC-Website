@@ -6,7 +6,7 @@ import { Stats } from "@/components/stats";
 import { Initiatives } from "@/components/initiatives";
 import { Testimonials } from "@/components/testimonials";
 import { Founder } from "@/components/founder";
-import { Partners } from "@/components/partners";
+import { Resources } from "@/components/resources";
 import { CTABridge } from "@/components/cta-bridge";
 import { GetInvolved } from "@/components/get-involved";
 import { Footer } from "@/components/footer";
@@ -23,7 +23,7 @@ export default function Home() {
         <Initiatives />
         <Testimonials />
         <Founder />
-        <Partners />
+        <Resources />
         <CTABridge />
         <GetInvolved />
       </main>

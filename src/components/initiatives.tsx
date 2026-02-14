@@ -6,10 +6,14 @@ import { SectionLabel } from "./ui/section-label";
 import { INITIATIVES } from "@/lib/constants";
 
 const INITIATIVE_IMAGES = [
-  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1531746790095-e5995a2e4568?w=800&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1610484826967-09c5720778c7?w=800&h=600&fit=crop",
-  "https://images.unsplash.com/photo-1526676037777-05a232554f77?w=800&h=600&fit=crop",
+  // The Forge — community tech hub, intergenerational learning
+  "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop",
+  // Beyond Code Catalysts — adults in career training / professional development
+  "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=600&fit=crop",
+  // Code Along — person coding, tutorials, screen-focused
+  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop",
+  // After The Game — athletes transitioning to tech careers
+  "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&h=600&fit=crop",
 ];
 
 const INITIATIVE_TAGS = [

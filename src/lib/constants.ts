@@ -10,6 +10,7 @@ export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Initiatives", href: "#initiatives" },
   { label: "Founder", href: "#founder" },
+  { label: "Resources", href: "#resources" },
   { label: "Get Involved", href: "#get-involved" },
 ] as const;
 
@@ -89,6 +90,44 @@ export const CONTACT = {
   general: "mica@wearebcc.org",
   marketing: "marketing@wearebcc.org",
   partnerships: "partnership@wearebcc.org",
+} as const;
+
+export const RESOURCES = [
+  {
+    title: "BCC One-Pager",
+    description:
+      "An overview of Beyond Code Collective — mission, initiatives, and how to get involved.",
+    type: "PDF" as const,
+    href: "/resources/bcc-one-pager.pdf",
+  },
+  {
+    title: "The Forge Overview",
+    description:
+      "Details on our place-based tech hubs blending education, workforce development, and community engagement.",
+    type: "PDF" as const,
+    href: "/resources/the-forge-overview.pdf",
+  },
+  {
+    title: "Brand Flipbook",
+    description:
+      "Our visual identity, brand story, and the design language behind Beyond Code Collective.",
+    type: "PDF" as const,
+    href: "/resources/bcc-brand-flipbook.pdf",
+  },
+  {
+    title: "After The Game Brief",
+    description:
+      "A cohort-based initiative helping professional athletes transition into tech careers.",
+    type: "PDF" as const,
+    href: "/resources/after-the-game-brief.pdf",
+  },
+] as const;
+
+export const FEATURED_VIDEO = {
+  title: "The Future Is All Of Ours",
+  embedUrl: "", // YouTube/Vimeo embed URL — leave empty for placeholder
+  thumbnailUrl:
+    "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=800&h=450&fit=crop",
 } as const;
 
 export const FOUNDER = {

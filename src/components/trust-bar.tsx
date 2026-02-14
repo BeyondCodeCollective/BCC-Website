@@ -1,7 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PARTNERS } from "@/lib/constants";
+
+const LOGOS = [
+  "Google",
+  "Microsoft",
+  "Amazon",
+  "Meta",
+  "Apple",
+  "Salesforce",
+  "IBM",
+  "Adobe",
+];
 
 export function TrustBar() {
   return (
@@ -14,25 +24,21 @@ export function TrustBar() {
           className="font-mono text-[10px] tracking-wider uppercase text-grey-3"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          Supported By
+          Where Tech Careers Are Being Built
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-4 flex flex-wrap items-center gap-x-10 gap-y-3"
-        >
-          {PARTNERS.map((name) => (
-            <span
-              key={name}
-              className="text-sm font-bold tracking-wider text-grey-3/40 uppercase transition-colors hover:text-true-black lg:text-base"
-            >
-              {name}
-            </span>
-          ))}
-        </motion.div>
+        <div className="mt-4 relative overflow-hidden">
+          <div className="flex animate-scroll gap-16 whitespace-nowrap">
+            {[...LOGOS, ...LOGOS].map((name, i) => (
+              <span
+                key={`${name}-${i}`}
+                className="text-sm font-bold tracking-wider text-grey-3/40 uppercase flex-shrink-0 lg:text-base"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, SITE } from "@/lib/constants";
+import { Logo } from "./ui/logo";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,6 +26,12 @@ export function Nav() {
     };
   }, [mobileOpen]);
 
+  const logoColor = scrolled ? "black" : "white";
+  const textColor = scrolled
+    ? "text-true-black/70 hover:text-true-black"
+    : "text-off-white/70 hover:text-off-white";
+  const hamburgerColor = scrolled ? "bg-true-black" : "bg-off-white";
+
   return (
     <>
       <nav
@@ -36,17 +43,13 @@ export function Nav() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           {/* Logo — left aligned per brand rules */}
-          <a href="#" className="flex-shrink-0">
-            <span
-              className="font-heading text-xl leading-[0.85] tracking-[-0.02em] text-true-black"
-              aria-label="Beyond Code Collective"
-            >
-              BEY0ND
-              <br />
-              C0DE
-              <br />
-              C0LLECT1VE
-            </span>
+          <a href="#" className="flex-shrink-0 flex items-center gap-3">
+            <Logo variant="monogram" color={logoColor} className="h-8 w-auto" />
+            <Logo
+              variant="stacked"
+              color={logoColor}
+              className="hidden text-sm sm:block"
+            />
           </a>
 
           {/* Desktop nav */}
@@ -55,7 +58,7 @@ export function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="font-mono text-xs tracking-wider uppercase text-true-black/70 transition-colors hover:text-true-black"
+                className={`font-mono text-xs tracking-wider uppercase transition-colors ${textColor}`}
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 {link.label}
@@ -79,17 +82,17 @@ export function Nav() {
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-0.5 w-6 bg-true-black transition-transform ${
+              className={`block h-0.5 w-6 transition-transform ${hamburgerColor} ${
                 mobileOpen ? "translate-y-2 rotate-45" : ""
               }`}
             />
             <span
-              className={`block h-0.5 w-6 bg-true-black transition-opacity ${
+              className={`block h-0.5 w-6 transition-opacity ${hamburgerColor} ${
                 mobileOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block h-0.5 w-6 bg-true-black transition-transform ${
+              className={`block h-0.5 w-6 transition-transform ${hamburgerColor} ${
                 mobileOpen ? "-translate-y-2 -rotate-45" : ""
               }`}
             />
