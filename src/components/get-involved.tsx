@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionLabel } from "./ui/section-label";
-import { AUDIENCE_SEGMENTS, SITE } from "@/lib/constants";
+import { AUDIENCE_SEGMENTS } from "@/lib/constants";
 
 export function GetInvolved() {
   const [email, setEmail] = useState("");
@@ -127,31 +127,6 @@ export function GetInvolved() {
           )}
         </motion.div>
 
-        {/* Secondary CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-12 flex flex-wrap gap-4"
-        >
-          <a
-            href={SITE.donateUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border-2 border-true-black px-8 py-4 font-mono text-sm tracking-wider uppercase text-true-black transition-colors hover:bg-true-black hover:text-off-white"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            Donate
-          </a>
-          <a
-            href="mailto:partnership@wearebcc.org"
-            className="border-2 border-true-black px-8 py-4 font-mono text-sm tracking-wider uppercase text-true-black transition-colors hover:bg-true-black hover:text-off-white"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            Partner With Us
-          </a>
-        </motion.div>
       </div>
     </section>
   );

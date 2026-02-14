@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import { motion } from "framer-motion";
 import { SectionLabel } from "./ui/section-label";
 import { RESOURCES, FEATURED_VIDEO } from "@/lib/constants";
 
@@ -27,25 +25,7 @@ function DownloadIcon() {
   );
 }
 
-function PlayIcon() {
-  return (
-    <svg
-      width="48"
-      height="48"
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <circle cx="24" cy="24" r="23" stroke="#E5F701" strokeWidth="2" />
-      <path d="M19 15l14 9-14 9V15z" fill="#E5F701" />
-    </svg>
-  );
-}
-
 export function Resources() {
-  const [videoOpen, setVideoOpen] = useState(false);
-
   return (
     <section
       id="resources"
@@ -100,50 +80,15 @@ export function Resources() {
               FEATURED VIDEO
             </p>
 
-            {FEATURED_VIDEO.embedUrl && videoOpen ? (
-              <div className="relative aspect-video overflow-hidden bg-true-black">
-                <iframe
-                  src={FEATURED_VIDEO.embedUrl}
-                  title={FEATURED_VIDEO.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full"
-                />
-              </div>
-            ) : (
-              <button
-                onClick={() => setVideoOpen(true)}
-                className="group relative aspect-video w-full overflow-hidden bg-true-black cursor-pointer"
-              >
-                <Image
-                  src={FEATURED_VIDEO.thumbnailUrl}
-                  alt={FEATURED_VIDEO.title}
-                  fill
-                  className="object-cover opacity-60 transition-opacity group-hover:opacity-80"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-                {/* Play button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="transition-transform group-hover:scale-110">
-                    <PlayIcon />
-                  </div>
-                </div>
-                {/* Title overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-true-black/80 to-transparent p-6">
-                  <p className="font-heading text-xl text-off-white lg:text-2xl">
-                    {FEATURED_VIDEO.title}
-                  </p>
-                  <p
-                    className="mt-1 font-mono text-xs tracking-wider text-off-white/50"
-                    style={{ fontFamily: "var(--font-mono)" }}
-                  >
-                    {FEATURED_VIDEO.embedUrl
-                      ? "CLICK TO PLAY"
-                      : "COMING SOON"}
-                  </p>
-                </div>
-              </button>
-            )}
+            <div className="relative aspect-video overflow-hidden bg-true-black">
+              <iframe
+                src={FEATURED_VIDEO.embedUrl}
+                title={FEATURED_VIDEO.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
           </motion.div>
 
           {/* Downloadable resources */}

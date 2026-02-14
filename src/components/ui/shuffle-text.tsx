@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -18,18 +18,26 @@ export function ShuffleText({
   delay?: number;
   cycleInterval?: number;
 }) {
-  const allTexts = texts ?? (text ? [text] : [""]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Stabilize the array reference so effects don't re-fire every render
+  const textsKey = texts ? texts.join("|") : text ?? "";
+  const allTexts = useMemo(
+    () => texts ?? (text ? [text] : [""]),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [textsKey]
+  );
+
   const [displayText, setDisplayText] = useState(allTexts[0]);
   const [hasInitialAnimated, setHasInitialAnimated] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const shuffleRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const cycleRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const indexRef = useRef(0);
 
   const runShuffle = useCallback(
     (targetText: string, onComplete?: () => void) => {
       let iteration = 0;
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (shuffleRef.current) clearInterval(shuffleRef.current);
 
-      intervalRef.current = setInterval(() => {
+      shuffleRef.current = setInterval(() => {
         setDisplayText(
           targetText
             .split("")
@@ -44,7 +52,8 @@ export function ShuffleText({
         iteration += 1 / 2;
 
         if (iteration >= targetText.length) {
-          if (intervalRef.current) clearInterval(intervalRef.current);
+          if (shuffleRef.current) clearInterval(shuffleRef.current);
+          shuffleRef.current = null;
           setDisplayText(targetText);
           onComplete?.();
         }
@@ -63,25 +72,22 @@ export function ShuffleText({
 
     return () => {
       clearTimeout(timeout);
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (shuffleRef.current) clearInterval(shuffleRef.current);
     };
   }, [delay, hasInitialAnimated, allTexts, runShuffle]);
 
-  // Cycling through multiple texts
+  // Cycling through multiple texts after initial animation completes
   useEffect(() => {
     if (!hasInitialAnimated || allTexts.length <= 1) return;
 
-    const cycle = setInterval(() => {
-      setCurrentIndex((prev) => {
-        const next = (prev + 1) % allTexts.length;
-        runShuffle(allTexts[next]);
-        return next;
-      });
+    cycleRef.current = setInterval(() => {
+      indexRef.current = (indexRef.current + 1) % allTexts.length;
+      runShuffle(allTexts[indexRef.current]);
     }, cycleInterval);
 
     return () => {
-      clearInterval(cycle);
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (cycleRef.current) clearInterval(cycleRef.current);
+      if (shuffleRef.current) clearInterval(shuffleRef.current);
     };
   }, [hasInitialAnimated, allTexts, cycleInterval, runShuffle]);
 

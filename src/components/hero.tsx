@@ -129,7 +129,7 @@ export function Hero() {
               <ShuffleText
                 texts={["BUILDS.", "GROWS.", "LEARNS.", "LEADS."]}
                 delay={600}
-                cycleInterval={20000}
+                cycleInterval={15000}
               />
             </motion.h1>
 

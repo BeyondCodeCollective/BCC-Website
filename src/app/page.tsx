@@ -1,6 +1,5 @@
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
-import { TrustBar } from "@/components/trust-bar";
 import { About } from "@/components/about";
 import { Stats } from "@/components/stats";
 import { Initiatives } from "@/components/initiatives";
@@ -18,7 +17,6 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <TrustBar />
         <About />
         <Stats />
         <Initiatives />

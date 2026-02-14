@@ -9,7 +9,7 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Initiatives", href: "#initiatives" },
-  { label: "Founder", href: "#founder" },
+  { label: "Partners", href: "#partners" },
   { label: "Resources", href: "#resources" },
   { label: "Get Involved", href: "#get-involved" },
 ] as const;
@@ -126,7 +126,7 @@ export const RESOURCES = [
 
 export const FEATURED_VIDEO = {
   title: "The Future Is All Of Ours",
-  embedUrl: "", // YouTube/Vimeo embed URL — leave empty for placeholder
+  embedUrl: "https://www.youtube.com/embed/-JEj-7AS7Kc",
   thumbnailUrl:
     "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=800&h=450&fit=crop",
 } as const;

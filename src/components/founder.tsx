@@ -44,10 +44,10 @@ export function Founder() {
             className="relative aspect-[3/4] max-h-[600px] overflow-hidden"
           >
             <Image
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop"
+              src="/images/cristina-mancini.png"
               alt="Cristina Mancini, Founder & CEO of Beyond Code Collective"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="(min-width: 1024px) 50vw, 100vw"
             />
           </motion.div>
