@@ -55,8 +55,20 @@ Every website we build should feel **designed**, not generated. The difference b
 ### Stack Preferences
 - **Next.js** (App Router) + TypeScript + Tailwind CSS
 - **Framer Motion** for animation (not CSS animations for complex interactions)
+- **Phosphor Icons** (`@phosphor-icons/react`) for all iconography — never use emojis in UI
 - Self-hosted fonts when possible (faster, more reliable than Google Fonts for brand fonts)
 - `next/image` with proper `sizes` attributes for all images
+
+### Icon Guidelines (Phosphor Icons)
+- Install: `npm install @phosphor-icons/react`
+- Docs: https://phosphoricons.com
+- Import individual icons: `import { Wrench, ChartBar, Lightning } from "@phosphor-icons/react"`
+- Use `weight` prop for style: `"thin"`, `"light"`, `"regular"`, `"bold"`, `"fill"`, `"duotone"`
+- Default to `"bold"` weight for UI elements, `"regular"` for inline/body context
+- Size with `size` prop (number in px) — match the surrounding text scale
+- Color inherits from parent `color` CSS — use Tailwind text color utilities
+- Never use emoji as icons. Phosphor has 9,000+ icons covering every use case
+- Consistent icon weight within a section — don't mix `bold` and `thin` in the same row
 
 ### Code Patterns
 - Brand tokens live in `globals.css` as `@theme inline` (Tailwind v4) or `tailwind.config` — single source of truth

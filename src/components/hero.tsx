@@ -126,7 +126,11 @@ export function Hero() {
             >
               <ShuffleText text="EVERYONE" delay={200} />
               <br />
-              <ShuffleText text="BUILDS." delay={600} />
+              <ShuffleText
+                texts={["BUILDS.", "GROWS.", "LEARNS.", "LEADS."]}
+                delay={600}
+                cycleInterval={20000}
+              />
             </motion.h1>
 
             <motion.div
@@ -164,7 +168,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.6, duration: 0.6 }}
-              className="mt-10"
+              className="mt-10 flex flex-wrap gap-4"
             >
               <button
                 onClick={() => openQuiz()}
@@ -173,6 +177,13 @@ export function Hero() {
               >
                 Get Started &rarr;
               </button>
+              <a
+                href="#get-involved"
+                className="border border-off-white/30 px-8 py-4 font-mono text-sm tracking-wider uppercase text-off-white/70 transition-all hover:border-off-white hover:text-off-white"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Join Newsletter
+              </a>
             </motion.div>
           </div>
 
