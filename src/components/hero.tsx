@@ -109,7 +109,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="font-heading text-[clamp(4rem,12vw,10rem)] leading-[0.85] text-off-white"
+              className="font-heading text-[clamp(3.5rem,10vw,8.5rem)] leading-[0.85] text-off-white"
             >
               <ShuffleText text={t("headline1")} delay={200} />
               <br />

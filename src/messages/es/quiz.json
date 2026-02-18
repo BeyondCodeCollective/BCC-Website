@@ -1,5 +1,393 @@
 {
   "quiz": {
-    "placeholder": true
-  }
+  "home": {
+    "brand": "Beyond Code Collective",
+    "backToHome": "Volver al Inicio",
+    "headline1": "Encuentra tu camino.",
+    "headline2": "Construye tu futuro.",
+    "description": "Preguntas r\u00e1pidas. Carreras reales. Descubre qu\u00e9 encaja contigo.",
+    "journeyLabel": "[ \u00bfD\u00d3NDE EST\u00c1S EN TU CAMINO? ]",
+    "under18Title": "Todav\u00eda en la escuela",
+    "under18Desc": "Secundaria, preparatoria o universidad",
+    "over18Title": "Listo para avanzar",
+    "over18Desc": "Buscando una nueva carrera o habilidad",
+    "meta": "[ 2 MINUTOS ] \u00b7 NO HAY RESPUESTAS INCORRECTAS"
+  },
+  "capture": {
+    "brand": "Beyond Code",
+    "headline": "Una cosa r\u00e1pida",
+    "description": "\u00bfD\u00f3nde enviamos tus resultados personalizados?",
+    "email": "Correo",
+    "phone": "Tel\u00e9fono",
+    "emailPlaceholder": "tu@correo.com",
+    "phonePlaceholder": "(555) 123-4567",
+    "submit": "\u00a1VAMOS!",
+    "skip": "Saltar por ahora",
+    "privacy": "SIN SPAM. CANCELA CUANDO QUIERAS."
+  },
+  "loading": {
+    "stages": [
+      "Analizando tus respuestas...",
+      "Encontrando tus fortalezas...",
+      "Buscando carreras compatibles...",
+      "Construyendo tu hoja de ruta..."
+    ]
+  },
+  "question": {
+    "of": "DE",
+    "trustGut": "Conf\u00eda en tu instinto. La primera respuesta suele ser la correcta."
+  },
+  "results": {
+    "home": "INICIO",
+    "retakeQuiz": "REPETIR QUIZ",
+    "yourPath": "[ TU CAMINO ]",
+    "yourIdealRole": "TU ROL IDEAL",
+    "yearAverage": "/a\u00f1o promedio",
+    "howLong": "\u00bfCu\u00e1nto tiempo tomar\u00e1?",
+    "iCanSpend": "Puedo dedicar",
+    "hrsDay": "hrs/d\u00eda",
+    "months": "Meses",
+    "basedOnAverages": "*BASADO EN PROMEDIOS DE ESTUDIANTES",
+    "salaryRange": "Rango salarial",
+    "dayToDay": "El d\u00eda a d\u00eda se ve as\u00ed",
+    "initiativesForYou": "[ INICIATIVAS PARA TI ]",
+    "startWithCourses": "[ COMIENZA CON ESTOS CURSOS ]",
+    "careerGuide": "Tu Gu\u00eda de Carrera",
+    "hereToHelp": "Aqu\u00ed para ayudarte a navegar",
+    "careerGuideShort": "Gu\u00eda de Carrera",
+    "askAnythingShort": "Preg\u00fantame lo que sea",
+    "questionsAbout": "Preguntas sobre",
+    "iGotYou": "? Aqu\u00ed estoy.",
+    "heyQuestions": "\u00a1Hola! Preguntas sobre",
+    "askPlaceholder": "Preg\u00fantame lo que sea...",
+    "chatError": "Lo siento, tuve un problema de conexi\u00f3n. \u00bfIntentas de nuevo?",
+    "suggestedQuestions": [
+      "\u00bfEs este el camino correcto para m\u00ed?",
+      "\u00bfQu\u00e9 habilidades necesito?",
+      "\u00bfC\u00f3mo empiezo?",
+      "\u00bfC\u00f3mo est\u00e1 el mercado laboral?"
+    ]
+  },
+  "careers": {
+    "fixer": {
+      "name": "El Reparador",
+      "tagline": "Ves problemas. Los resuelves.",
+      "role": "Especialista en Soporte T\u00e9cnico",
+      "dayToDay": [
+        "Resolver problemas de hardware y software",
+        "Configurar y mantener sistemas inform\u00e1ticos",
+        "Ayudar a usuarios con problemas t\u00e9cnicos",
+        "Gestionar conectividad de red y seguridad",
+        "Documentar soluciones y procesos"
+      ],
+      "forYouth": {
+        "items": ["Talleres", "Code Along", "Campamentos de Verano"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["CompTIA A+", "CompTIA Network+", "Fundamentos de Mesa de Ayuda"],
+        "cta": "Iniciar Ruta de TI"
+      }
+    },
+    "architect": {
+      "name": "El Arquitecto",
+      "tagline": "Ves c\u00f3mo todo se conecta.",
+      "role": "Analista de Datos",
+      "dayToDay": [
+        "Analizar datos para encontrar patrones",
+        "Construir dashboards y visualizaciones",
+        "Escribir consultas SQL y scripts en Python",
+        "Presentar hallazgos a stakeholders",
+        "Mejorar decisiones de negocio con datos"
+      ],
+      "forYouth": {
+        "items": ["AI Hive", "Talleres", "Code Along"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["An\u00e1lisis de Datos", "Python para Ciencia de Datos", "Fundamentos de SQL"],
+        "cta": "Iniciar Ruta de Datos"
+      }
+    },
+    "connector": {
+      "name": "El Conector",
+      "tagline": "Las personas son tu superpoder.",
+      "role": "Administrador de Salesforce",
+      "dayToDay": [
+        "Gestionar y personalizar plataformas Salesforce",
+        "Capacitar equipos en mejores pr\u00e1cticas de CRM",
+        "Construir reportes y dashboards para equipos de ventas",
+        "Automatizar flujos de trabajo empresariales",
+        "Colaborar con stakeholders de diferentes departamentos"
+      ],
+      "forYouth": {
+        "items": ["Culture Coded", "Campamentos de Verano", "Talleres"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Administrador Salesforce", "An\u00e1lisis de Negocios", "Fundamentos de CRM"],
+        "cta": "Iniciar Ruta Salesforce"
+      }
+    },
+    "creator": {
+      "name": "El Creador",
+      "tagline": "Creas cosas que la gente ama usar.",
+      "role": "Dise\u00f1ador UX",
+      "dayToDay": [
+        "Dise\u00f1ar interfaces de usuario intuitivas",
+        "Realizar investigaci\u00f3n y pruebas con usuarios",
+        "Crear wireframes y prototipos en Figma",
+        "Colaborar con equipos de desarrollo y producto",
+        "Mejorar productos basado en retroalimentaci\u00f3n"
+      ],
+      "forYouth": {
+        "items": ["Culture Coded", "Code Along", "Campamentos de Verano"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Fundamentos de UX", "Maestr\u00eda en Figma", "Design Thinking"],
+        "cta": "Iniciar Ruta de Dise\u00f1o"
+      }
+    },
+    "builder": {
+      "name": "El Constructor",
+      "tagline": "Prefieres crear tu propio camino.",
+      "role": "Emprendedor / Freelancer",
+      "dayToDay": [
+        "Construir y lanzar tus propios productos o servicios",
+        "Encontrar y atender clientes",
+        "Gestionar finanzas y operaciones del negocio",
+        "Hacer marketing y hacer crecer tu marca",
+        "Usar muchos sombreros y resolver problemas a diario"
+      ],
+      "forYouth": {
+        "items": ["Code Along", "Talleres", "Campamentos de Verano"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Fundamentos de Negocios", "E-commerce y Shopify", "Bases del Freelance"],
+        "cta": "Iniciar Ruta de Negocios"
+      }
+    },
+    "maker": {
+      "name": "El Hacedor",
+      "tagline": "Construyes cosas que importan.",
+      "role": "Profesional de Oficios T\u00e9cnicos",
+      "dayToDay": [
+        "Trabajar con las manos en proyectos reales",
+        "Leer planos y documentos t\u00e9cnicos",
+        "Instalar, mantener y reparar sistemas",
+        "Resolver problemas en sitios de trabajo",
+        "Ver resultados tangibles de tu trabajo cada d\u00eda"
+      ],
+      "forYouth": {
+        "items": ["Talleres", "Campamentos de Verano", "Code Along"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Exploraci\u00f3n de Oficios", "Preparaci\u00f3n para Aprendizaje", "Certificaciones T\u00e9cnicas"],
+        "cta": "Explorar Oficios"
+      }
+    },
+    "strategist": {
+      "name": "El Estratega",
+      "tagline": "Ves el panorama completo.",
+      "role": "Gerente de Proyectos",
+      "dayToDay": [
+        "Liderar equipos multifuncionales para entregar proyectos",
+        "Planificar cronogramas, presupuestos y recursos",
+        "Eliminar obst\u00e1culos para tu equipo",
+        "Comunicarte con stakeholders a todos los niveles",
+        "Convertir el caos en progreso organizado"
+      ],
+      "forYouth": {
+        "items": ["Iniciativas de Liderazgo", "Campamentos de Verano", "Talleres"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Certificaci\u00f3n PMP", "Agile/Scrum", "Fundamentos de Liderazgo"],
+        "cta": "Iniciar Ruta de Gesti\u00f3n"
+      }
+    },
+    "guardian": {
+      "name": "El Guardi\u00e1n",
+      "tagline": "Mantienes las cosas seguras y protegidas.",
+      "role": "Analista de Ciberseguridad",
+      "dayToDay": [
+        "Monitorear sistemas en busca de amenazas de seguridad",
+        "Investigar actividad sospechosa",
+        "Implementar protocolos de seguridad",
+        "Capacitar equipos en mejores pr\u00e1cticas de seguridad",
+        "Mantenerte adelante de hackers y amenazas"
+      ],
+      "forYouth": {
+        "items": ["Clubs de Ciberseguridad", "Talleres", "Campamentos de Verano"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Security+", "Hacking \u00c9tico", "Seguridad de Redes"],
+        "cta": "Iniciar Ruta de Seguridad"
+      }
+    },
+    "analyst": {
+      "name": "El Detective",
+      "tagline": "Encuentras la verdad en los detalles.",
+      "role": "Analista de Inteligencia de Negocios",
+      "dayToDay": [
+        "Explorar datos para descubrir informaci\u00f3n valiosa",
+        "Construir reportes que impulsen decisiones",
+        "Entrevistar stakeholders para entender necesidades",
+        "Traducir hallazgos complejos en historias simples",
+        "Detectar tendencias que otros pasan por alto"
+      ],
+      "forYouth": {
+        "items": ["Clubs de Datos", "Talleres", "AI Hive"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Power BI", "Tableau", "An\u00e1lisis de Negocios"],
+        "cta": "Iniciar Ruta de An\u00e1lisis"
+      }
+    },
+    "healer": {
+      "name": "El Sanador",
+      "tagline": "Ayudas a las personas a sentirse mejor.",
+      "role": "Especialista en Tecnolog\u00eda de Salud",
+      "dayToDay": [
+        "Apoyar sistemas de tecnolog\u00eda de salud",
+        "Capacitar personal m\u00e9dico en nuevas herramientas",
+        "Asegurar que los datos de pacientes sean seguros y accesibles",
+        "Resolver problemas de equipos m\u00e9dicos cr\u00edticos",
+        "Hacer que la tecnolog\u00eda funcione para quienes salvan vidas"
+      ],
+      "forYouth": {
+        "items": ["Talleres de Tecnolog\u00eda de Salud", "Campamentos de Verano", "Iniciativas STEM"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Certificaci\u00f3n IT de Salud", "Terminolog\u00eda M\u00e9dica", "Capacitaci\u00f3n HIPAA"],
+        "cta": "Iniciar Ruta de Tecnolog\u00eda de Salud"
+      }
+    },
+    "educator": {
+      "name": "El Gu\u00eda",
+      "tagline": "Iluminas el camino para otros.",
+      "role": "Capacitador T\u00e9cnico / Dise\u00f1ador Instruccional",
+      "dayToDay": [
+        "Crear experiencias de aprendizaje atractivas",
+        "Simplificar temas complejos en lecciones claras",
+        "Entrenar personas para alcanzar su potencial",
+        "Desarrollar materiales de capacitaci\u00f3n y cursos",
+        "Ver crecer a las personas gracias a tu gu\u00eda"
+      ],
+      "forYouth": {
+        "items": ["Mentor\u00eda entre Pares", "Talleres", "Iniciativas de Liderazgo"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Dise\u00f1o Instruccional", "Teor\u00eda de Aprendizaje Adulto", "Desarrollo de Cursos"],
+        "cta": "Iniciar Ruta de Educaci\u00f3n"
+      }
+    },
+    "advocate": {
+      "name": "El Defensor",
+      "tagline": "Luchas por lo que importa.",
+      "role": "Coordinador de Tecnolog\u00eda Comunitaria",
+      "dayToDay": [
+        "Llevar acceso tecnol\u00f3gico a comunidades desatendidas",
+        "Dirigir iniciativas de alfabetizaci\u00f3n digital",
+        "Conectar personas con recursos y oportunidades",
+        "Abogar por acceso equitativo a la tecnolog\u00eda",
+        "Generar impacto real en la vida de las personas"
+      ],
+      "forYouth": {
+        "items": ["Servicio Comunitario", "Iniciativas de Liderazgo", "Talleres"],
+        "cta": "Explorar Iniciativas BCC"
+      },
+      "forAdult": {
+        "items": ["Tecnolog\u00eda sin Fines de Lucro", "Inclusi\u00f3n Digital", "Organizaci\u00f3n Comunitaria"],
+        "cta": "Iniciar Ruta Comunitaria"
+      }
+    }
+  },
+  "questions": [
+    {
+      "question": "La computadora de tu amigo muere justo antes de una entrega importante. \u00bfQu\u00e9 haces?",
+      "answers": [
+        "Ya estoy agarrando mis herramientas\u2014yo me encargo",
+        "D\u00e9jame revisar qu\u00e9 est\u00e1 mal primero",
+        "Conozco a alguien que puede ayudar",
+        "Hora de hacer que esta crisis se vea organizada",
+        "Esto no habr\u00eda pasado con mejor seguridad...",
+        "D\u00e9jame ense\u00f1arte a arreglarlo t\u00fa mismo"
+      ]
+    },
+    {
+      "question": "Acabas de ganar $10,000. \u00bfCu\u00e1l es tu primer pensamiento?",
+      "answers": [
+        "Por fin mejorar mi equipo",
+        "Invertirlo y verlo crecer",
+        "Hacer una fiesta para todos los que quiero",
+        "Empezar ese negocio que he so\u00f1ado",
+        "Donar a causas que importan",
+        "Pagar la educaci\u00f3n de alguien"
+      ]
+    },
+    {
+      "question": "\u00bfQu\u00e9 te har\u00eda renunciar a un trabajo en el acto?",
+      "answers": [
+        "Que me obliguen a entregar algo roto",
+        "Que el liderazgo ignore los datos",
+        "Un equipo t\u00f3xico que no se apoya entre s\u00ed",
+        "Cero libertad creativa",
+        "Ver a personas afectadas porque se cortaron esquinas",
+        "Trabajar para una empresa que da\u00f1a comunidades"
+      ]
+    },
+    {
+      "question": "Est\u00e1s liderando un proyecto grupal. \u00bfCu\u00e1l es tu movimiento?",
+      "answers": [
+        "Meterme y manejar la parte t\u00e9cnica m\u00e1s dif\u00edcil",
+        "Crear un plan claro para que todos sepan su rol",
+        "Asegurarme de que todos sean escuchados e incluidos",
+        "Enfocarme en que el producto final se vea incre\u00edble",
+        "Investigar todo para no cometer errores",
+        "Asegurarme de que estamos construyendo algo que ayude a la gente"
+      ]
+    },
+    {
+      "question": "Son las 2 AM y no puedes dormir. \u00bfQu\u00e9 est\u00e1s haciendo?",
+      "answers": [
+        "Perdido en un rabbit hole aprendiendo algo nuevo",
+        "Planeando mi pr\u00f3ximo gran movimiento",
+        "Escribiendo a amigos o en redes sociales",
+        "Trabajando en un proyecto creativo",
+        "Preocup\u00e1ndome por todo lo que podr\u00eda salir mal",
+        "Pensando en c\u00f3mo hacer ma\u00f1ana mejor para alguien"
+      ]
+    },
+    {
+      "question": "\u00bfQu\u00e9 cumplido te llega diferente?",
+      "answers": [
+        "\"Siempre encuentras la soluci\u00f3n\"",
+        "\"Ves cosas que nadie m\u00e1s ve\"",
+        "\"A todos les encanta trabajar contigo\"",
+        "\"Esto es hermoso\"",
+        "\"\u00bfHiciste esto desde cero?!\"",
+        "\"Cambiaste mi vida\""
+      ]
+    },
+    {
+      "question": "Elige tu superpoder.",
+      "answers": [
+        "Arreglar cualquier cosa con un toque",
+        "Ver 10 a\u00f1os en el futuro",
+        "Hacer que cualquiera conf\u00ede en ti al instante",
+        "Crear cualquier cosa que imagines",
+        "Ser inmune a todas las amenazas",
+        "Sanar el dolor de cualquier persona"
+      ]
+    }
+  ]
+}
 }

@@ -1,5 +1,393 @@
 {
   "quiz": {
-    "placeholder": true
-  }
+  "home": {
+    "brand": "Beyond Code Collective",
+    "backToHome": "Back to Home",
+    "headline1": "Find your path.",
+    "headline2": "Build your future.",
+    "description": "Quick questions. Real career matches. Let's find what fits you.",
+    "journeyLabel": "[ WHERE ARE YOU IN YOUR JOURNEY? ]",
+    "under18Title": "Still in school",
+    "under18Desc": "Middle school, high school, or college",
+    "over18Title": "Ready to level up",
+    "over18Desc": "Looking for a new career or skill",
+    "meta": "[ 2 MINUTES ] \u00b7 NO WRONG ANSWERS"
+  },
+  "capture": {
+    "brand": "Beyond Code",
+    "headline": "One quick thing",
+    "description": "Where should we send your personalized results?",
+    "email": "Email",
+    "phone": "Phone",
+    "emailPlaceholder": "your@email.com",
+    "phonePlaceholder": "(555) 123-4567",
+    "submit": "LET'S GO",
+    "skip": "Skip for now",
+    "privacy": "NO SPAM. UNSUBSCRIBE ANYTIME."
+  },
+  "loading": {
+    "stages": [
+      "Analyzing your answers...",
+      "Finding your strengths...",
+      "Matching career paths...",
+      "Building your roadmap..."
+    ]
+  },
+  "question": {
+    "of": "OF",
+    "trustGut": "Trust your gut. First instinct is usually right."
+  },
+  "results": {
+    "home": "HOME",
+    "retakeQuiz": "RETAKE QUIZ",
+    "yourPath": "[ YOUR PATH ]",
+    "yourIdealRole": "YOUR IDEAL ROLE",
+    "yearAverage": "/year average",
+    "howLong": "How long will it take?",
+    "iCanSpend": "I can spend",
+    "hrsDay": "hrs/day",
+    "months": "Months",
+    "basedOnAverages": "*BASED ON STUDENT AVERAGES",
+    "salaryRange": "Salary range",
+    "dayToDay": "Day-to-day looks like",
+    "initiativesForYou": "[ INITIATIVES FOR YOU ]",
+    "startWithCourses": "[ START WITH THESE COURSES ]",
+    "careerGuide": "Your Career Guide",
+    "hereToHelp": "Here to help you navigate",
+    "careerGuideShort": "Career Guide",
+    "askAnythingShort": "Ask me anything",
+    "questionsAbout": "Questions about",
+    "iGotYou": "? I got you.",
+    "heyQuestions": "Hey! Questions about",
+    "askPlaceholder": "Ask me anything...",
+    "chatError": "Sorry, I had trouble connecting. Try again?",
+    "suggestedQuestions": [
+      "Is this the right path for me?",
+      "What skills do I need?",
+      "How do I get started?",
+      "What's the job market like?"
+    ]
+  },
+  "careers": {
+    "fixer": {
+      "name": "The Fixer",
+      "tagline": "You see problems. You solve them.",
+      "role": "IT Support Specialist",
+      "dayToDay": [
+        "Troubleshooting hardware and software issues",
+        "Setting up and maintaining computer systems",
+        "Helping users solve technical problems",
+        "Managing network connectivity and security",
+        "Documenting solutions and processes"
+      ],
+      "forYouth": {
+        "items": ["Workshops", "Code Along", "Summer Camps"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["CompTIA A+", "CompTIA Network+", "Help Desk Fundamentals"],
+        "cta": "Start IT Track"
+      }
+    },
+    "architect": {
+      "name": "The Architect",
+      "tagline": "You see how everything connects.",
+      "role": "Data Analyst",
+      "dayToDay": [
+        "Analyzing data to find patterns and insights",
+        "Building dashboards and visualizations",
+        "Writing SQL queries and Python scripts",
+        "Presenting findings to stakeholders",
+        "Improving business decisions with data"
+      ],
+      "forYouth": {
+        "items": ["AI Hive", "Workshops", "Code Along"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["Data Analytics", "Python for Data Science", "SQL Fundamentals"],
+        "cta": "Start Data Track"
+      }
+    },
+    "connector": {
+      "name": "The Connector",
+      "tagline": "People are your superpower.",
+      "role": "Salesforce Administrator",
+      "dayToDay": [
+        "Managing and customizing Salesforce platforms",
+        "Training teams on CRM best practices",
+        "Building reports and dashboards for sales teams",
+        "Automating business workflows",
+        "Collaborating with stakeholders across departments"
+      ],
+      "forYouth": {
+        "items": ["Culture Coded", "Summer Camps", "Workshops"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["Salesforce Administrator", "Business Analysis", "CRM Fundamentals"],
+        "cta": "Start Salesforce Track"
+      }
+    },
+    "creator": {
+      "name": "The Creator",
+      "tagline": "You make things people love to use.",
+      "role": "UX Designer",
+      "dayToDay": [
+        "Designing intuitive user interfaces",
+        "Conducting user research and testing",
+        "Creating wireframes and prototypes in Figma",
+        "Collaborating with developers and product teams",
+        "Improving products based on user feedback"
+      ],
+      "forYouth": {
+        "items": ["Culture Coded", "Code Along", "Summer Camps"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["UX Fundamentals", "Figma Mastery", "Design Thinking"],
+        "cta": "Start Design Track"
+      }
+    },
+    "builder": {
+      "name": "The Builder",
+      "tagline": "You'd rather create your own path.",
+      "role": "Entrepreneur / Freelancer",
+      "dayToDay": [
+        "Building and launching your own products or services",
+        "Finding and serving clients or customers",
+        "Managing finances and business operations",
+        "Marketing and growing your brand",
+        "Wearing many hats and solving problems daily"
+      ],
+      "forYouth": {
+        "items": ["Code Along", "Workshops", "Summer Camps"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["Business Basics", "E-commerce & Shopify", "Freelance Foundations"],
+        "cta": "Start Business Track"
+      }
+    },
+    "maker": {
+      "name": "The Maker",
+      "tagline": "You build things that matter.",
+      "role": "Skilled Trades Professional",
+      "dayToDay": [
+        "Working with your hands on real projects",
+        "Reading blueprints and technical documents",
+        "Installing, maintaining, and repairing systems",
+        "Problem-solving on job sites",
+        "Seeing tangible results of your work daily"
+      ],
+      "forYouth": {
+        "items": ["Workshops", "Summer Camps", "Code Along"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["Trade Exploration", "Apprenticeship Prep", "Technical Certifications"],
+        "cta": "Explore Trades"
+      }
+    },
+    "strategist": {
+      "name": "The Strategist",
+      "tagline": "You see the bigger picture.",
+      "role": "Project Manager",
+      "dayToDay": [
+        "Leading cross-functional teams to deliver projects",
+        "Planning timelines, budgets, and resources",
+        "Removing roadblocks for your team",
+        "Communicating with stakeholders at all levels",
+        "Turning chaos into organized progress"
+      ],
+      "forYouth": {
+        "items": ["Leadership Initiatives", "Summer Camps", "Workshops"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["PMP Certification", "Agile/Scrum", "Leadership Fundamentals"],
+        "cta": "Start Management Track"
+      }
+    },
+    "guardian": {
+      "name": "The Guardian",
+      "tagline": "You keep things safe and secure.",
+      "role": "Cybersecurity Analyst",
+      "dayToDay": [
+        "Monitoring systems for security threats",
+        "Investigating suspicious activity",
+        "Implementing security protocols",
+        "Training teams on security best practices",
+        "Staying ahead of hackers and threats"
+      ],
+      "forYouth": {
+        "items": ["Cyber Clubs", "Workshops", "Summer Camps"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["Security+", "Ethical Hacking", "Network Security"],
+        "cta": "Start Security Track"
+      }
+    },
+    "analyst": {
+      "name": "The Detective",
+      "tagline": "You find the truth in the details.",
+      "role": "Business Intelligence Analyst",
+      "dayToDay": [
+        "Digging into data to uncover insights",
+        "Building reports that drive decisions",
+        "Interviewing stakeholders to understand needs",
+        "Translating complex findings into simple stories",
+        "Spotting trends others miss"
+      ],
+      "forYouth": {
+        "items": ["Data Clubs", "Workshops", "AI Hive"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["Power BI", "Tableau", "Business Analysis"],
+        "cta": "Start Analytics Track"
+      }
+    },
+    "healer": {
+      "name": "The Healer",
+      "tagline": "You help people feel better.",
+      "role": "Healthcare Tech Specialist",
+      "dayToDay": [
+        "Supporting healthcare technology systems",
+        "Training medical staff on new tools",
+        "Ensuring patient data is secure and accessible",
+        "Troubleshooting critical healthcare equipment",
+        "Making technology work for people who save lives"
+      ],
+      "forYouth": {
+        "items": ["Health Tech Workshops", "Summer Camps", "STEM Initiatives"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["Health IT Certification", "Medical Terminology", "HIPAA Training"],
+        "cta": "Start Healthcare Tech Track"
+      }
+    },
+    "educator": {
+      "name": "The Guide",
+      "tagline": "You light the path for others.",
+      "role": "Technical Trainer / Instructional Designer",
+      "dayToDay": [
+        "Creating engaging learning experiences",
+        "Breaking down complex topics into simple lessons",
+        "Coaching individuals to reach their potential",
+        "Developing training materials and courses",
+        "Watching people grow because of your guidance"
+      ],
+      "forYouth": {
+        "items": ["Peer Mentoring", "Workshops", "Leadership Initiatives"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["Instructional Design", "Adult Learning Theory", "Course Development"],
+        "cta": "Start Education Track"
+      }
+    },
+    "advocate": {
+      "name": "The Advocate",
+      "tagline": "You fight for what matters.",
+      "role": "Community Tech Coordinator",
+      "dayToDay": [
+        "Bringing technology access to underserved communities",
+        "Running digital literacy initiatives",
+        "Connecting people with resources and opportunities",
+        "Advocating for equitable tech access",
+        "Making real impact in people's lives"
+      ],
+      "forYouth": {
+        "items": ["Community Service", "Leadership Initiatives", "Workshops"],
+        "cta": "Explore BCC Initiatives"
+      },
+      "forAdult": {
+        "items": ["Nonprofit Tech", "Digital Inclusion", "Community Organizing"],
+        "cta": "Start Community Track"
+      }
+    }
+  },
+  "questions": [
+    {
+      "question": "Your friend's computer dies right before a big deadline. What do you do?",
+      "answers": [
+        "Already grabbing my tools\u2014I got this",
+        "Let me check what's actually wrong first",
+        "I know a guy who can help",
+        "Time to make this crisis look organized",
+        "This wouldn't have happened with better security...",
+        "Let me walk you through fixing it yourself"
+      ]
+    },
+    {
+      "question": "You just won $10,000. What's your first thought?",
+      "answers": [
+        "Finally upgrade my setup",
+        "Invest it and watch it grow",
+        "Throw a party for everyone I love",
+        "Start that business I've been dreaming about",
+        "Donate to causes that matter",
+        "Pay for someone's education or training"
+      ]
+    },
+    {
+      "question": "What would make you quit a job on the spot?",
+      "answers": [
+        "Being forced to ship something broken",
+        "Leadership ignoring the data",
+        "A toxic team that doesn't have each other's backs",
+        "Zero creative freedom",
+        "Seeing people get hurt because corners were cut",
+        "Working for a company that hurts communities"
+      ]
+    },
+    {
+      "question": "You're leading a group project. What's your move?",
+      "answers": [
+        "Jump in and handle the hardest technical part",
+        "Create a clear plan so everyone knows their role",
+        "Make sure everyone feels heard and included",
+        "Focus on making the final product look amazing",
+        "Research everything so we don't make mistakes",
+        "Make sure we're building something that helps people"
+      ]
+    },
+    {
+      "question": "It's 2 AM and you can't sleep. What are you doing?",
+      "answers": [
+        "Down a rabbit hole learning something new",
+        "Planning my next big move",
+        "Texting friends or scrolling socials",
+        "Working on a creative project",
+        "Worrying about all the things that could go wrong",
+        "Thinking about how to make tomorrow better for someone"
+      ]
+    },
+    {
+      "question": "What compliment hits different for you?",
+      "answers": [
+        "\"You always figure things out\"",
+        "\"You see things nobody else sees\"",
+        "\"Everyone loves working with you\"",
+        "\"This is beautiful\"",
+        "\"You made this from scratch?!\"",
+        "\"You changed my life\""
+      ]
+    },
+    {
+      "question": "Pick your superpower.",
+      "answers": [
+        "Fix anything with one touch",
+        "See 10 years into the future",
+        "Make anyone trust you instantly",
+        "Create anything you imagine",
+        "Be immune to all threats",
+        "Heal anyone's pain"
+      ]
+    }
+  ]
+}
 }

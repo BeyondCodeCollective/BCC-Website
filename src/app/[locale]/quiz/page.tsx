@@ -2,7 +2,9 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import {
   Wrench,
   ChartBar,
@@ -103,322 +105,29 @@ function CareerIcon({ type, size = 32, className = "" }: { type: PersonalityKey;
 }
 
 // ============================================
-// CAREER PATHWAYS WITH REAL DATA
+// NON-TRANSLATABLE CAREER METADATA
 // ============================================
 
-const careers = {
-  fixer: {
-    name: "The Fixer",
-    tagline: "You see problems. You solve them.",
-    role: "IT Support Specialist",
-    salary: { low: 45000, mid: 58000, high: 75000 },
-    timeToComplete: { 2: 8, 4: 4, 6: 3 },
-    dayToDay: [
-      "Troubleshooting hardware and software issues",
-      "Setting up and maintaining computer systems",
-      "Helping users solve technical problems",
-      "Managing network connectivity and security",
-      "Documenting solutions and processes",
-    ],
-    forYouth: {
-      items: ["Workshops", "Code Along", "Summer Camps"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["CompTIA A+", "CompTIA Network+", "Help Desk Fundamentals"],
-      cta: "Start IT Track",
-      ctaUrl: "#",
-    },
-    personality: "fixer" as PersonalityKey,
-    color: "#1D59FF",
-  },
-  architect: {
-    name: "The Architect",
-    tagline: "You see how everything connects.",
-    role: "Data Analyst",
-    salary: { low: 55000, mid: 75000, high: 95000 },
-    timeToComplete: { 2: 10, 4: 5, 6: 4 },
-    dayToDay: [
-      "Analyzing data to find patterns and insights",
-      "Building dashboards and visualizations",
-      "Writing SQL queries and Python scripts",
-      "Presenting findings to stakeholders",
-      "Improving business decisions with data",
-    ],
-    forYouth: {
-      items: ["AI Hive", "Workshops", "Code Along"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["Data Analytics", "Python for Data Science", "SQL Fundamentals"],
-      cta: "Start Data Track",
-      ctaUrl: "#",
-    },
-    personality: "architect" as PersonalityKey,
-    color: "#1D59FF",
-  },
-  connector: {
-    name: "The Connector",
-    tagline: "People are your superpower.",
-    role: "Salesforce Administrator",
-    salary: { low: 60000, mid: 81000, high: 105000 },
-    timeToComplete: { 2: 7, 4: 4, 6: 3 },
-    dayToDay: [
-      "Managing and customizing Salesforce platforms",
-      "Training teams on CRM best practices",
-      "Building reports and dashboards for sales teams",
-      "Automating business workflows",
-      "Collaborating with stakeholders across departments",
-    ],
-    forYouth: {
-      items: ["Culture Coded", "Summer Camps", "Workshops"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["Salesforce Administrator", "Business Analysis", "CRM Fundamentals"],
-      cta: "Start Salesforce Track",
-      ctaUrl: "#",
-    },
-    personality: "connector" as PersonalityKey,
-    color: "#FF4C00",
-  },
-  creator: {
-    name: "The Creator",
-    tagline: "You make things people love to use.",
-    role: "UX Designer",
-    salary: { low: 62000, mid: 85000, high: 115000 },
-    timeToComplete: { 2: 9, 4: 5, 6: 3 },
-    dayToDay: [
-      "Designing intuitive user interfaces",
-      "Conducting user research and testing",
-      "Creating wireframes and prototypes in Figma",
-      "Collaborating with developers and product teams",
-      "Improving products based on user feedback",
-    ],
-    forYouth: {
-      items: ["Culture Coded", "Code Along", "Summer Camps"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["UX Fundamentals", "Figma Mastery", "Design Thinking"],
-      cta: "Start Design Track",
-      ctaUrl: "#",
-    },
-    personality: "creator" as PersonalityKey,
-    color: "#1D59FF",
-  },
-  builder: {
-    name: "The Builder",
-    tagline: "You'd rather create your own path.",
-    role: "Entrepreneur / Freelancer",
-    salary: { low: 40000, mid: 75000, high: 150000 },
-    timeToComplete: { 2: 6, 4: 3, 6: 2 },
-    dayToDay: [
-      "Building and launching your own products or services",
-      "Finding and serving clients or customers",
-      "Managing finances and business operations",
-      "Marketing and growing your brand",
-      "Wearing many hats and solving problems daily",
-    ],
-    forYouth: {
-      items: ["Code Along", "Workshops", "Summer Camps"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["Business Basics", "E-commerce & Shopify", "Freelance Foundations"],
-      cta: "Start Business Track",
-      ctaUrl: "#",
-    },
-    personality: "builder" as PersonalityKey,
-    color: "#FF4C00",
-  },
-  maker: {
-    name: "The Maker",
-    tagline: "You build things that matter.",
-    role: "Skilled Trades Professional",
-    salary: { low: 42000, mid: 58000, high: 85000 },
-    timeToComplete: { 2: 12, 4: 6, 6: 4 },
-    dayToDay: [
-      "Working with your hands on real projects",
-      "Reading blueprints and technical documents",
-      "Installing, maintaining, and repairing systems",
-      "Problem-solving on job sites",
-      "Seeing tangible results of your work daily",
-    ],
-    forYouth: {
-      items: ["Workshops", "Summer Camps", "Code Along"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["Trade Exploration", "Apprenticeship Prep", "Technical Certifications"],
-      cta: "Explore Trades",
-      ctaUrl: "#",
-    },
-    personality: "maker" as PersonalityKey,
-    color: "#1D59FF",
-  },
-  strategist: {
-    name: "The Strategist",
-    tagline: "You see the bigger picture.",
-    role: "Project Manager",
-    salary: { low: 65000, mid: 88000, high: 120000 },
-    timeToComplete: { 2: 8, 4: 4, 6: 3 },
-    dayToDay: [
-      "Leading cross-functional teams to deliver projects",
-      "Planning timelines, budgets, and resources",
-      "Removing roadblocks for your team",
-      "Communicating with stakeholders at all levels",
-      "Turning chaos into organized progress",
-    ],
-    forYouth: {
-      items: ["Leadership Initiatives", "Summer Camps", "Workshops"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["PMP Certification", "Agile/Scrum", "Leadership Fundamentals"],
-      cta: "Start Management Track",
-      ctaUrl: "#",
-    },
-    personality: "strategist" as PersonalityKey,
-    color: "#012966",
-  },
-  guardian: {
-    name: "The Guardian",
-    tagline: "You keep things safe and secure.",
-    role: "Cybersecurity Analyst",
-    salary: { low: 70000, mid: 95000, high: 130000 },
-    timeToComplete: { 2: 10, 4: 5, 6: 4 },
-    dayToDay: [
-      "Monitoring systems for security threats",
-      "Investigating suspicious activity",
-      "Implementing security protocols",
-      "Training teams on security best practices",
-      "Staying ahead of hackers and threats",
-    ],
-    forYouth: {
-      items: ["Cyber Clubs", "Workshops", "Summer Camps"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["Security+", "Ethical Hacking", "Network Security"],
-      cta: "Start Security Track",
-      ctaUrl: "#",
-    },
-    personality: "guardian" as PersonalityKey,
-    color: "#1D59FF",
-  },
-  analyst: {
-    name: "The Detective",
-    tagline: "You find the truth in the details.",
-    role: "Business Intelligence Analyst",
-    salary: { low: 58000, mid: 78000, high: 105000 },
-    timeToComplete: { 2: 9, 4: 5, 6: 3 },
-    dayToDay: [
-      "Digging into data to uncover insights",
-      "Building reports that drive decisions",
-      "Interviewing stakeholders to understand needs",
-      "Translating complex findings into simple stories",
-      "Spotting trends others miss",
-    ],
-    forYouth: {
-      items: ["Data Clubs", "Workshops", "AI Hive"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["Power BI", "Tableau", "Business Analysis"],
-      cta: "Start Analytics Track",
-      ctaUrl: "#",
-    },
-    personality: "analyst" as PersonalityKey,
-    color: "#FF4C00",
-  },
-  healer: {
-    name: "The Healer",
-    tagline: "You help people feel better.",
-    role: "Healthcare Tech Specialist",
-    salary: { low: 48000, mid: 65000, high: 90000 },
-    timeToComplete: { 2: 10, 4: 5, 6: 4 },
-    dayToDay: [
-      "Supporting healthcare technology systems",
-      "Training medical staff on new tools",
-      "Ensuring patient data is secure and accessible",
-      "Troubleshooting critical healthcare equipment",
-      "Making technology work for people who save lives",
-    ],
-    forYouth: {
-      items: ["Health Tech Workshops", "Summer Camps", "STEM Initiatives"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["Health IT Certification", "Medical Terminology", "HIPAA Training"],
-      cta: "Start Healthcare Tech Track",
-      ctaUrl: "#",
-    },
-    personality: "healer" as PersonalityKey,
-    color: "#012966",
-  },
-  educator: {
-    name: "The Guide",
-    tagline: "You light the path for others.",
-    role: "Technical Trainer / Instructional Designer",
-    salary: { low: 52000, mid: 72000, high: 95000 },
-    timeToComplete: { 2: 8, 4: 4, 6: 3 },
-    dayToDay: [
-      "Creating engaging learning experiences",
-      "Breaking down complex topics into simple lessons",
-      "Coaching individuals to reach their potential",
-      "Developing training materials and courses",
-      "Watching people grow because of your guidance",
-    ],
-    forYouth: {
-      items: ["Peer Mentoring", "Workshops", "Leadership Initiatives"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["Instructional Design", "Adult Learning Theory", "Course Development"],
-      cta: "Start Education Track",
-      ctaUrl: "#",
-    },
-    personality: "educator" as PersonalityKey,
-    color: "#1D59FF",
-  },
-  advocate: {
-    name: "The Advocate",
-    tagline: "You fight for what matters.",
-    role: "Community Tech Coordinator",
-    salary: { low: 45000, mid: 62000, high: 85000 },
-    timeToComplete: { 2: 6, 4: 3, 6: 2 },
-    dayToDay: [
-      "Bringing technology access to underserved communities",
-      "Running digital literacy initiatives",
-      "Connecting people with resources and opportunities",
-      "Advocating for equitable tech access",
-      "Making real impact in people's lives",
-    ],
-    forYouth: {
-      items: ["Community Service", "Leadership Initiatives", "Workshops"],
-      cta: "Explore BCC Initiatives",
-      ctaUrl: "/",
-    },
-    forAdult: {
-      items: ["Nonprofit Tech", "Digital Inclusion", "Community Organizing"],
-      cta: "Start Community Track",
-      ctaUrl: "#",
-    },
-    personality: "advocate" as PersonalityKey,
-    color: "#012966",
-  },
+const careerMeta: Record<PersonalityKey, {
+  salary: { low: number; mid: number; high: number };
+  timeToComplete: Record<number, number>;
+  personality: PersonalityKey;
+  color: string;
+  forYouth: { ctaUrl: string };
+  forAdult: { ctaUrl: string };
+}> = {
+  fixer: { salary: { low: 45000, mid: 58000, high: 75000 }, timeToComplete: { 2: 8, 4: 4, 6: 3 }, personality: "fixer", color: "#1D59FF", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  architect: { salary: { low: 55000, mid: 75000, high: 95000 }, timeToComplete: { 2: 10, 4: 5, 6: 4 }, personality: "architect", color: "#1D59FF", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  connector: { salary: { low: 60000, mid: 81000, high: 105000 }, timeToComplete: { 2: 7, 4: 4, 6: 3 }, personality: "connector", color: "#FF4C00", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  creator: { salary: { low: 62000, mid: 85000, high: 115000 }, timeToComplete: { 2: 9, 4: 5, 6: 3 }, personality: "creator", color: "#1D59FF", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  builder: { salary: { low: 40000, mid: 75000, high: 150000 }, timeToComplete: { 2: 6, 4: 3, 6: 2 }, personality: "builder", color: "#FF4C00", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  maker: { salary: { low: 42000, mid: 58000, high: 85000 }, timeToComplete: { 2: 12, 4: 6, 6: 4 }, personality: "maker", color: "#1D59FF", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  strategist: { salary: { low: 65000, mid: 88000, high: 120000 }, timeToComplete: { 2: 8, 4: 4, 6: 3 }, personality: "strategist", color: "#012966", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  guardian: { salary: { low: 70000, mid: 95000, high: 130000 }, timeToComplete: { 2: 10, 4: 5, 6: 4 }, personality: "guardian", color: "#1D59FF", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  analyst: { salary: { low: 58000, mid: 78000, high: 105000 }, timeToComplete: { 2: 9, 4: 5, 6: 3 }, personality: "analyst", color: "#FF4C00", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  healer: { salary: { low: 48000, mid: 65000, high: 90000 }, timeToComplete: { 2: 10, 4: 5, 6: 4 }, personality: "healer", color: "#012966", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  educator: { salary: { low: 52000, mid: 72000, high: 95000 }, timeToComplete: { 2: 8, 4: 4, 6: 3 }, personality: "educator", color: "#1D59FF", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
+  advocate: { salary: { low: 45000, mid: 62000, high: 85000 }, timeToComplete: { 2: 6, 4: 3, 6: 2 }, personality: "advocate", color: "#012966", forYouth: { ctaUrl: "/" }, forAdult: { ctaUrl: "#" } },
 };
 
 // ============================================
@@ -469,104 +178,95 @@ function AnswerIcon({ name, size = 28, className = "" }: { name: string; size?: 
 }
 
 // ============================================
-// QUESTIONS
+// NON-TRANSLATABLE QUESTION METADATA
 // ============================================
 
-interface Answer {
-  text: string;
+interface AnswerMeta {
   icon: string;
   personality: PersonalityKey;
 }
 
-interface Question {
-  question: string;
+interface QuestionMeta {
   background: string;
-  answers: Answer[];
+  answers: AnswerMeta[];
 }
 
-const questions: Question[] = [
+const questionMeta: QuestionMeta[] = [
   {
-    question: "Your friend's computer dies right before a big deadline. What do you do?",
     background: backgrounds.q1,
     answers: [
-      { text: "Already grabbing my tools\u2014I got this", icon: "wrench", personality: "fixer" },
-      { text: "Let me check what's actually wrong first", icon: "magnifying-glass", personality: "analyst" },
-      { text: "I know a guy who can help", icon: "device-mobile", personality: "connector" },
-      { text: "Time to make this crisis look organized", icon: "target", personality: "strategist" },
-      { text: "This wouldn't have happened with better security...", icon: "shield", personality: "guardian" },
-      { text: "Let me walk you through fixing it yourself", icon: "star", personality: "educator" },
+      { icon: "wrench", personality: "fixer" },
+      { icon: "magnifying-glass", personality: "analyst" },
+      { icon: "device-mobile", personality: "connector" },
+      { icon: "target", personality: "strategist" },
+      { icon: "shield", personality: "guardian" },
+      { icon: "star", personality: "educator" },
     ],
   },
   {
-    question: "You just won $10,000. What's your first thought?",
     background: backgrounds.q2,
     answers: [
-      { text: "Finally upgrade my setup", icon: "desktop", personality: "fixer" },
-      { text: "Invest it and watch it grow", icon: "chart-line-up", personality: "architect" },
-      { text: "Throw a party for everyone I love", icon: "party", personality: "connector" },
-      { text: "Start that business I've been dreaming about", icon: "rocket", personality: "builder" },
-      { text: "Donate to causes that matter", icon: "hand-fist", personality: "advocate" },
-      { text: "Pay for someone's education or training", icon: "graduation-cap", personality: "educator" },
+      { icon: "desktop", personality: "fixer" },
+      { icon: "chart-line-up", personality: "architect" },
+      { icon: "party", personality: "connector" },
+      { icon: "rocket", personality: "builder" },
+      { icon: "hand-fist", personality: "advocate" },
+      { icon: "graduation-cap", personality: "educator" },
     ],
   },
   {
-    question: "What would make you quit a job on the spot?",
     background: backgrounds.q3,
     answers: [
-      { text: "Being forced to ship something broken", icon: "heart-break", personality: "fixer" },
-      { text: "Leadership ignoring the data", icon: "eye-slash", personality: "analyst" },
-      { text: "A toxic team that doesn't have each other's backs", icon: "prohibit", personality: "connector" },
-      { text: "Zero creative freedom", icon: "paint-brush", personality: "creator" },
-      { text: "Seeing people get hurt because corners were cut", icon: "warning", personality: "guardian" },
-      { text: "Working for a company that hurts communities", icon: "fire", personality: "advocate" },
+      { icon: "heart-break", personality: "fixer" },
+      { icon: "eye-slash", personality: "analyst" },
+      { icon: "prohibit", personality: "connector" },
+      { icon: "paint-brush", personality: "creator" },
+      { icon: "warning", personality: "guardian" },
+      { icon: "fire", personality: "advocate" },
     ],
   },
   {
-    question: "You're leading a group project. What's your move?",
     background: backgrounds.q4,
     answers: [
-      { text: "Jump in and handle the hardest technical part", icon: "lightning", personality: "maker" },
-      { text: "Create a clear plan so everyone knows their role", icon: "clipboard", personality: "strategist" },
-      { text: "Make sure everyone feels heard and included", icon: "handshake", personality: "connector" },
-      { text: "Focus on making the final product look amazing", icon: "sparkle", personality: "creator" },
-      { text: "Research everything so we don't make mistakes", icon: "books", personality: "analyst" },
-      { text: "Make sure we're building something that helps people", icon: "heart", personality: "healer" },
+      { icon: "lightning", personality: "maker" },
+      { icon: "clipboard", personality: "strategist" },
+      { icon: "handshake", personality: "connector" },
+      { icon: "sparkle", personality: "creator" },
+      { icon: "books", personality: "analyst" },
+      { icon: "heart", personality: "healer" },
     ],
   },
   {
-    question: "It's 2 AM and you can't sleep. What are you doing?",
     background: backgrounds.q5,
     answers: [
-      { text: "Down a rabbit hole learning something new", icon: "brain", personality: "analyst" },
-      { text: "Planning my next big move", icon: "moon", personality: "strategist" },
-      { text: "Texting friends or scrolling socials", icon: "chat-circle", personality: "connector" },
-      { text: "Working on a creative project", icon: "palette", personality: "creator" },
-      { text: "Worrying about all the things that could go wrong", icon: "shield", personality: "guardian" },
-      { text: "Thinking about how to make tomorrow better for someone", icon: "heart", personality: "advocate" },
+      { icon: "brain", personality: "analyst" },
+      { icon: "moon", personality: "strategist" },
+      { icon: "chat-circle", personality: "connector" },
+      { icon: "palette", personality: "creator" },
+      { icon: "shield", personality: "guardian" },
+      { icon: "heart", personality: "advocate" },
     ],
   },
   {
-    question: "What compliment hits different for you?",
     background: backgrounds.q1,
     answers: [
-      { text: '"You always figure things out"', icon: "brain", personality: "fixer" },
-      { text: '"You see things nobody else sees"', icon: "eye", personality: "architect" },
-      { text: '"Everyone loves working with you"', icon: "handshake", personality: "connector" },
-      { text: '"This is beautiful"', icon: "smiley", personality: "creator" },
-      { text: '"You made this from scratch?!"', icon: "lightbulb", personality: "builder" },
-      { text: '"You changed my life"', icon: "star", personality: "educator" },
+      { icon: "brain", personality: "fixer" },
+      { icon: "eye", personality: "architect" },
+      { icon: "handshake", personality: "connector" },
+      { icon: "smiley", personality: "creator" },
+      { icon: "lightbulb", personality: "builder" },
+      { icon: "star", personality: "educator" },
     ],
   },
   {
-    question: "Pick your superpower.",
     background: backgrounds.q2,
     answers: [
-      { text: "Fix anything with one touch", icon: "hand-waving", personality: "fixer" },
-      { text: "See 10 years into the future", icon: "eye", personality: "architect" },
-      { text: "Make anyone trust you instantly", icon: "fingerprint-simple", personality: "connector" },
-      { text: "Create anything you imagine", icon: "sparkle", personality: "creator" },
-      { text: "Be immune to all threats", icon: "shield", personality: "guardian" },
-      { text: "Heal anyone's pain", icon: "heart", personality: "healer" },
+      { icon: "hand-waving", personality: "fixer" },
+      { icon: "eye", personality: "architect" },
+      { icon: "fingerprint-simple", personality: "connector" },
+      { icon: "sparkle", personality: "creator" },
+      { icon: "shield", personality: "guardian" },
+      { icon: "heart", personality: "healer" },
     ],
   },
 ];
@@ -576,52 +276,54 @@ const questions: Question[] = [
 // ============================================
 
 function HomeScreen({ onSelectAge }: { onSelectAge: (age: AgeGroup) => void }) {
+  const t = useTranslations("quiz");
+
   return (
     <div className="h-[100dvh] flex">
       <div className="w-full lg:w-1/2 h-full bg-cobalt flex flex-col">
         <header className="flex items-center justify-between px-4 md:px-12 py-6 md:py-8 safe-top">
-          <div className="font-heading text-off-white text-sm md:text-base tracking-tight">Beyond Code Collective</div>
+          <div className="font-heading text-off-white text-sm md:text-base tracking-tight">{t("home.brand")}</div>
           <Link href="/" className="text-off-white/80 text-sm hover:text-off-white transition-colors" style={{ fontFamily: "var(--font-mono)" }}>
-            Back to Home
+            {t("home.backToHome")}
           </Link>
         </header>
 
         <div className="flex-1 flex items-center px-4 md:px-12 lg:px-16 pb-6">
           <div className="w-full max-w-xl fade-in">
             <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl text-off-white mb-4 md:mb-6 leading-[0.9]">
-              Find your path.<br />
-              <span className="text-off-white">Build your future.</span>
+              {t("home.headline1")}<br />
+              <span className="text-off-white">{t("home.headline2")}</span>
             </h1>
 
             <p className="text-base md:text-xl text-off-white/70 mb-6 md:mb-12 leading-relaxed">
-              Quick questions. Real career matches. Let&apos;s find what fits you.
+              {t("home.description")}
             </p>
 
-            <p className="text-off-white/50 text-xs md:text-sm mb-4 md:mb-6" style={{ fontFamily: "var(--font-mono)" }}>[ WHERE ARE YOU IN YOUR JOURNEY? ]</p>
+            <p className="text-off-white/50 text-xs md:text-sm mb-4 md:mb-6" style={{ fontFamily: "var(--font-mono)" }}>{t("home.journeyLabel")}</p>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
               <button
                 onClick={() => onSelectAge("under18")}
                 className="group bg-charcoal border-2 border-off-white/20 px-5 py-5 text-left transition-all hover:border-off-white active:scale-[0.98] md:hover:scale-[1.02] flex-1 focus:outline-none focus:ring-2 focus:ring-cobalt focus:ring-offset-2 focus:ring-offset-true-black"
-                aria-label="I'm still in school - middle school, high school, or college"
+                aria-label={t("home.under18Title")}
               >
                 <div className="text-electric-green mb-2" aria-hidden="true"><Backpack size={28} weight="bold" /></div>
-                <div className="text-lg font-semibold text-off-white mb-1">Still in school</div>
-                <div className="text-off-white/60 text-sm">Middle school, high school, or college</div>
+                <div className="text-lg font-semibold text-off-white mb-1">{t("home.under18Title")}</div>
+                <div className="text-off-white/60 text-sm">{t("home.under18Desc")}</div>
               </button>
 
               <button
                 onClick={() => onSelectAge("18plus")}
                 className="group bg-charcoal border-2 border-off-white/20 px-5 py-5 text-left transition-all hover:border-off-white active:scale-[0.98] md:hover:scale-[1.02] flex-1 focus:outline-none focus:ring-2 focus:ring-cobalt focus:ring-offset-2 focus:ring-offset-true-black"
-                aria-label="Ready to level up - looking for a new career or skill"
+                aria-label={t("home.over18Title")}
               >
                 <div className="text-electric-green mb-2" aria-hidden="true"><Rocket size={28} weight="bold" /></div>
-                <div className="text-lg font-semibold text-off-white mb-1">Ready to level up</div>
-                <div className="text-off-white/60 text-sm">Looking for a new career or skill</div>
+                <div className="text-lg font-semibold text-off-white mb-1">{t("home.over18Title")}</div>
+                <div className="text-off-white/60 text-sm">{t("home.over18Desc")}</div>
               </button>
             </div>
 
-            <p className="mt-6 md:mt-10 text-off-white/50 text-xs md:text-sm" style={{ fontFamily: "var(--font-mono)" }}>[ 2 MINUTES ] &middot; NO WRONG ANSWERS</p>
+            <p className="mt-6 md:mt-10 text-off-white/50 text-xs md:text-sm" style={{ fontFamily: "var(--font-mono)" }}>{t("home.meta")}</p>
           </div>
         </div>
       </div>
@@ -640,6 +342,7 @@ function LeadCaptureScreen({
   onSubmit: (contact: { type: 'email' | 'phone'; value: string }) => void;
   onSkip: () => void;
 }) {
+  const t = useTranslations("quiz");
   const [contactType, setContactType] = useState<'email' | 'phone'>('email');
   const [value, setValue] = useState('');
   const [isValid, setIsValid] = useState(false);
@@ -669,17 +372,17 @@ function LeadCaptureScreen({
     <div className="h-[100dvh] flex">
       <div className="w-full lg:w-1/2 h-full bg-cobalt flex flex-col">
         <header className="flex items-center justify-between px-4 md:px-12 py-6 md:py-8 safe-top">
-          <div className="font-heading text-off-white text-sm md:text-base tracking-tight">Beyond Code</div>
+          <div className="font-heading text-off-white text-sm md:text-base tracking-tight">{t("capture.brand")}</div>
         </header>
 
         <div className="flex-1 flex items-center px-4 md:px-12 lg:px-16 pb-6">
           <div className="w-full max-w-xl fade-in">
             <div className="text-off-white mb-4 md:mb-6"><Envelope size={48} weight="bold" /></div>
             <h1 className="font-heading text-2xl md:text-4xl text-off-white mb-3 md:mb-4 leading-[0.9]">
-              One quick thing
+              {t("capture.headline")}
             </h1>
             <p className="text-base md:text-lg text-off-white/70 mb-6 md:mb-8 leading-relaxed">
-              Where should we send your personalized results?
+              {t("capture.description")}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
@@ -693,7 +396,7 @@ function LeadCaptureScreen({
                       : 'text-off-white/60 hover:text-off-white'
                   }`}
                 >
-                  Email
+                  {t("capture.email")}
                 </button>
                 <button
                   type="button"
@@ -704,7 +407,7 @@ function LeadCaptureScreen({
                       : 'text-off-white/60 hover:text-off-white'
                   }`}
                 >
-                  Phone
+                  {t("capture.phone")}
                 </button>
               </div>
 
@@ -713,7 +416,7 @@ function LeadCaptureScreen({
                   type={contactType === 'email' ? 'email' : 'tel'}
                   value={value}
                   onChange={handleChange}
-                  placeholder={contactType === 'email' ? 'your@email.com' : '(555) 123-4567'}
+                  placeholder={contactType === 'email' ? t("capture.emailPlaceholder") : t("capture.phonePlaceholder")}
                   className="w-full bg-white text-true-black placeholder-grey-3 px-5 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-electric-green border-0"
                   autoFocus
                 />
@@ -734,7 +437,7 @@ function LeadCaptureScreen({
                 }`}
                 style={{ fontFamily: "var(--font-mono)" }}
               >
-                LET&apos;S GO &rarr;
+                {t("capture.submit")} &rarr;
               </button>
             </form>
 
@@ -742,11 +445,11 @@ function LeadCaptureScreen({
               onClick={onSkip}
               className="mt-4 md:mt-6 text-off-white/50 hover:text-off-white text-sm transition-colors"
             >
-              Skip for now
+              {t("capture.skip")}
             </button>
 
             <p className="mt-6 md:mt-8 text-off-white/40 text-xs flex items-center gap-2" style={{ fontFamily: "var(--font-mono)" }}>
-              <Lock size={14} weight="bold" /> NO SPAM. UNSUBSCRIBE ANYTIME.
+              <Lock size={14} weight="bold" /> {t("capture.privacy")}
             </p>
           </div>
         </div>
@@ -759,14 +462,16 @@ function LeadCaptureScreen({
   );
 }
 
-function LoadingScreen({ career }: { career: typeof careers[PersonalityKey] }) {
+function LoadingScreen({ personalityKey }: { personalityKey: PersonalityKey }) {
+  const t = useTranslations("quiz");
   const [stage, setStage] = useState(0);
-  const stages = [
-    "Analyzing your answers...",
-    "Finding your strengths...",
-    "Matching career paths...",
-    "Building your roadmap..."
-  ];
+
+  const stages: string[] = [];
+  let si = 0;
+  while (t.has(`loading.stages.${si}`)) {
+    stages.push(t(`loading.stages.${si}`));
+    si++;
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -781,9 +486,9 @@ function LoadingScreen({ career }: { career: typeof careers[PersonalityKey] }) {
         <div
           className="flex justify-center mb-6 md:mb-8 animate-bounce text-off-white"
           style={{ animationDuration: '1s' }}
-          aria-label={`${career.name} icon`}
+          aria-label={`${t(`careers.${personalityKey}.name`)} icon`}
         >
-          <CareerIcon type={career.personality} size={64} />
+          <CareerIcon type={personalityKey} size={64} />
         </div>
         <div className="space-y-2 md:space-y-3" role="status" aria-live="polite">
           {stages.map((text, i) => (
@@ -807,18 +512,18 @@ function LoadingScreen({ career }: { career: typeof careers[PersonalityKey] }) {
 }
 
 function QuestionScreen({
-  question,
   questionIndex,
   totalQuestions,
   onAnswer,
 }: {
-  question: Question;
   questionIndex: number;
   totalQuestions: number;
   onAnswer: (personality: PersonalityKey) => void;
 }) {
+  const t = useTranslations("quiz");
   const [selected, setSelected] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const meta = questionMeta[questionIndex];
 
   const handleSelect = (index: number, personality: PersonalityKey) => {
     setSelected(index);
@@ -873,7 +578,7 @@ function QuestionScreen({
                 className={`inline-block px-4 py-1.5 ${isLight ? 'bg-true-black/10 text-true-black/70' : 'bg-off-white/10 text-off-white/70'} text-sm font-medium`}
                 style={{ fontFamily: "var(--font-mono)" }}
               >
-                [{String(questionIndex + 1).padStart(2, "0")}] OF [{String(totalQuestions).padStart(2, "0")}]
+                [{String(questionIndex + 1).padStart(2, "0")}] {t("question.of")} [{String(totalQuestions).padStart(2, "0")}]
               </span>
             </div>
 
@@ -881,7 +586,7 @@ function QuestionScreen({
               className={`font-heading text-xl md:text-4xl lg:text-5xl ${isLight ? 'text-true-black' : 'text-off-white'} text-center mb-4 md:mb-10 leading-[0.9] fade-in px-2`}
               id="question-heading"
             >
-              {question.question}
+              {t(`questions.${questionIndex}.question`)}
             </h2>
           </div>
 
@@ -891,7 +596,7 @@ function QuestionScreen({
               role="radiogroup"
               aria-labelledby="question-heading"
             >
-              {question.answers.map((answer, i) => (
+              {meta.answers.map((answer, i) => (
                 <button
                   key={i}
                   onClick={() => handleSelect(i, answer.personality)}
@@ -906,7 +611,7 @@ function QuestionScreen({
                   disabled={selected !== null}
                   role="radio"
                   aria-checked={selected === i}
-                  aria-label={answer.text}
+                  aria-label={t(`questions.${questionIndex}.answers.${i}`)}
                   className={`group relative text-left p-4 md:p-5 transition-all duration-300 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-cobalt focus:ring-offset-2 focus:ring-offset-transparent
                     ${selected === i
                       ? (isLight ? 'bg-cobalt text-off-white' : 'bg-electric-green text-true-black') + ' scale-[1.02] shadow-xl'
@@ -924,7 +629,9 @@ function QuestionScreen({
                     <span className={`${selected === i ? 'text-off-white' : (isLight ? 'text-true-black' : 'text-off-white')}`} aria-hidden="true">
                       <AnswerIcon name={answer.icon} size={28} />
                     </span>
-                    <span className="font-medium text-sm md:text-base leading-tight md:leading-snug line-clamp-2">{answer.text}</span>
+                    <span className="font-medium text-sm md:text-base leading-tight md:leading-snug line-clamp-2">
+                      {t(`questions.${questionIndex}.answers.${i}`)}
+                    </span>
                   </div>
                   {selected === i && (
                     <div className="absolute top-2 right-2 md:top-3 md:right-3" aria-hidden="true">
@@ -937,7 +644,7 @@ function QuestionScreen({
           </div>
 
           <p className={`hidden md:block text-center mt-8 ${isLight ? 'text-true-black/40' : 'text-off-white/40'} text-sm`}>
-            Trust your gut. First instinct is usually right.
+            {t("question.trustGut")}
           </p>
         </div>
       </div>
@@ -951,14 +658,17 @@ interface ChatMessage {
 }
 
 function ResultsScreen({
-  career,
+  personalityKey,
   ageGroup,
   onRestart,
 }: {
-  career: typeof careers[PersonalityKey];
+  personalityKey: PersonalityKey;
   ageGroup: AgeGroup;
   onRestart: () => void;
 }) {
+  const t = useTranslations("quiz");
+  const locale = useLocale();
+  const career = careerMeta[personalityKey];
   const [hoursPerDay, setHoursPerDay] = useState<2 | 4 | 6>(4);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -967,8 +677,35 @@ function ResultsScreen({
   const [showMobileChat, setShowMobileChat] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const pathwayInfo = ageGroup === "under18" ? career.forYouth : career.forAdult;
+  const isYouth = ageGroup === "under18";
+  const ctaUrl = isYouth ? career.forYouth.ctaUrl : career.forAdult.ctaUrl;
   const months = career.timeToComplete[hoursPerDay];
+
+  // Build pathway items from translations
+  const pathwayKey = isYouth ? "forYouth" : "forAdult";
+  const pathwayItems: string[] = [];
+  let pi = 0;
+  while (t.has(`careers.${personalityKey}.${pathwayKey}.items.${pi}`)) {
+    pathwayItems.push(t(`careers.${personalityKey}.${pathwayKey}.items.${pi}`));
+    pi++;
+  }
+  const pathwayCta = t(`careers.${personalityKey}.${pathwayKey}.cta`);
+
+  // Build day-to-day items from translations
+  const dayToDay: string[] = [];
+  let di = 0;
+  while (t.has(`careers.${personalityKey}.dayToDay.${di}`)) {
+    dayToDay.push(t(`careers.${personalityKey}.dayToDay.${di}`));
+    di++;
+  }
+
+  // Build suggested questions from translations
+  const suggestedQuestions: string[] = [];
+  let qi = 0;
+  while (t.has(`results.suggestedQuestions.${qi}`)) {
+    suggestedQuestions.push(t(`results.suggestedQuestions.${qi}`));
+    qi++;
+  }
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -989,14 +726,15 @@ function ResultsScreen({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: [...messages, userMessage],
+          locale,
           context: {
-            personalityName: career.name,
-            tagline: career.tagline,
-            role: career.role,
+            personalityName: t(`careers.${personalityKey}.name`),
+            tagline: t(`careers.${personalityKey}.tagline`),
+            role: t(`careers.${personalityKey}.role`),
             salary: career.salary.mid,
             timeToComplete: months,
             hoursPerDay,
-            courses: pathwayInfo.items,
+            courses: pathwayItems,
           },
         }),
       });
@@ -1007,21 +745,16 @@ function ResultsScreen({
       }
     } catch (error) {
       console.error("Chat error:", error);
-      setMessages(prev => [...prev, { role: "assistant", content: "Sorry, I had trouble connecting. Try again?" }]);
+      setMessages(prev => [...prev, { role: "assistant", content: t("results.chatError") }]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const suggestedQuestions = [
-    "Is this the right path for me?",
-    "What skills do I need?",
-    "How do I get started?",
-    "What's the job market like?",
-  ];
-
-  // All career colors are now dark - use white text on all role cards
   const roleCardTextClass = "text-off-white";
+  const careerName = t(`careers.${personalityKey}.name`);
+  const careerTagline = t(`careers.${personalityKey}.tagline`);
+  const careerRole = t(`careers.${personalityKey}.role`);
 
   return (
     <div className="min-h-[100dvh] flex">
@@ -1036,15 +769,15 @@ function ResultsScreen({
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
-              HOME
+              {t("results.home")}
             </Link>
             <button
               onClick={onRestart}
               className="text-grey-3 hover:text-true-black text-sm font-medium transition-colors"
               style={{ fontFamily: "var(--font-mono)" }}
-              aria-label="Retake quiz"
+              aria-label={t("results.retakeQuiz")}
             >
-              RETAKE QUIZ
+              {t("results.retakeQuiz")}
             </button>
           </div>
         </header>
@@ -1052,28 +785,28 @@ function ResultsScreen({
         <div className="px-4 md:px-12 lg:px-16 py-6 md:py-8">
           <div className="mb-6 md:mb-8 fade-in">
             <p className="mb-2 text-xs md:text-sm font-semibold tracking-wide text-cobalt" style={{ fontFamily: "var(--font-mono)" }}>
-              [ YOUR PATH ]
+              {t("results.yourPath")}
             </p>
             <h1 className="font-heading text-3xl md:text-5xl text-true-black tracking-tight mb-2 flex items-center gap-3">
-              <span className="text-cobalt"><CareerIcon type={career.personality} size={40} /></span>
-              {career.name}
+              <span className="text-cobalt"><CareerIcon type={personalityKey} size={40} /></span>
+              {careerName}
             </h1>
-            <p className="text-base md:text-xl text-grey-3 italic">&quot;{career.tagline}&quot;</p>
+            <p className="text-base md:text-xl text-grey-3 italic">&quot;{careerTagline}&quot;</p>
           </div>
 
           <div
             className="mb-6 md:mb-8 px-4 md:px-6 py-4 md:py-5"
             style={{ backgroundColor: career.color }}
           >
-            <p className={`text-sm font-semibold opacity-80 ${roleCardTextClass}`} style={{ fontFamily: "var(--font-mono)" }}>YOUR IDEAL ROLE</p>
-            <p className={`text-xl md:text-2xl font-bold ${roleCardTextClass}`}>{career.role}</p>
-            <p className={`text-base md:text-lg opacity-90 mt-1 ${roleCardTextClass}`}>${career.salary.mid.toLocaleString()}/year average</p>
+            <p className={`text-sm font-semibold opacity-80 ${roleCardTextClass}`} style={{ fontFamily: "var(--font-mono)" }}>{t("results.yourIdealRole")}</p>
+            <p className={`text-xl md:text-2xl font-bold ${roleCardTextClass}`}>{careerRole}</p>
+            <p className={`text-base md:text-lg opacity-90 mt-1 ${roleCardTextClass}`}>${career.salary.mid.toLocaleString()}{t("results.yearAverage")}</p>
           </div>
 
           <div className="mb-6 md:mb-8 bg-white p-4 md:p-6 border border-grey-2">
-            <h3 className="text-base md:text-lg font-bold text-true-black mb-3 md:mb-4">How long will it take?</h3>
+            <h3 className="text-base md:text-lg font-bold text-true-black mb-3 md:mb-4">{t("results.howLong")}</h3>
             <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4 flex-wrap">
-              <span className="text-grey-3 text-sm">I can spend</span>
+              <span className="text-grey-3 text-sm">{t("results.iCanSpend")}</span>
               <div className="flex bg-grey-1 p-1">
                 {[2, 4, 6].map((hours) => (
                   <button
@@ -1087,16 +820,16 @@ function ResultsScreen({
                   </button>
                 ))}
               </div>
-              <span className="text-grey-3 text-sm">hrs/day</span>
+              <span className="text-grey-3 text-sm">{t("results.hrsDay")}</span>
             </div>
             <div className="text-2xl md:text-3xl font-bold text-cobalt">
-              &asymp; {months} Months
+              &asymp; {months} {t("results.months")}
             </div>
-            <p className="text-grey-3 text-xs mt-2" style={{ fontFamily: "var(--font-mono)" }}>*BASED ON STUDENT AVERAGES</p>
+            <p className="text-grey-3 text-xs mt-2" style={{ fontFamily: "var(--font-mono)" }}>{t("results.basedOnAverages")}</p>
           </div>
 
           <div className="mb-6 md:mb-8 bg-white p-4 md:p-6 border border-grey-2">
-            <h3 className="text-base md:text-lg font-bold text-true-black mb-3 md:mb-4">Salary range</h3>
+            <h3 className="text-base md:text-lg font-bold text-true-black mb-3 md:mb-4">{t("results.salaryRange")}</h3>
             <div className="relative h-16 md:h-20 flex items-end gap-0.5 md:gap-1 mb-2">
               {[15, 25, 40, 55, 70, 85, 95, 100, 95, 85, 70].map((height, i) => (
                 <div
@@ -1117,9 +850,9 @@ function ResultsScreen({
           </div>
 
           <div className="mb-6 md:mb-8 bg-white p-4 md:p-6 border border-grey-2">
-            <h3 className="text-base md:text-lg font-bold text-true-black mb-3 md:mb-4">Day-to-day looks like</h3>
+            <h3 className="text-base md:text-lg font-bold text-true-black mb-3 md:mb-4">{t("results.dayToDay")}</h3>
             <ul className="space-y-1.5 md:space-y-2">
-              {career.dayToDay.map((item, i) => (
+              {dayToDay.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-charcoal text-sm">
                   <span className="mt-0.5 text-cobalt">&bull;</span>
                   <span>{item}</span>
@@ -1130,10 +863,10 @@ function ResultsScreen({
 
           <div className="mb-6 md:mb-8">
             <p className="mb-2 md:mb-3 text-sm font-semibold text-cobalt" style={{ fontFamily: "var(--font-mono)" }}>
-              {ageGroup === "under18" ? "[ INITIATIVES FOR YOU ]" : "[ START WITH THESE COURSES ]"}
+              {isYouth ? t("results.initiativesForYou") : t("results.startWithCourses")}
             </p>
             <div className="flex flex-wrap gap-2">
-              {pathwayInfo.items.map((item) => (
+              {pathwayItems.map((item) => (
                 <span
                   key={item}
                   className="px-4 py-2 text-sm font-medium border border-cobalt text-cobalt"
@@ -1145,12 +878,12 @@ function ResultsScreen({
           </div>
 
           <Link
-            href={pathwayInfo.ctaUrl}
+            href={ctaUrl}
             className="inline-flex items-center justify-center gap-3 bg-cobalt text-off-white text-base md:text-lg font-bold px-6 md:px-8 py-4 transition-all active:scale-95 md:hover:scale-105 w-full md:w-auto"
             style={{ fontFamily: "var(--font-mono)" }}
-            aria-label={`Explore ${pathwayInfo.cta}`}
+            aria-label={pathwayCta}
           >
-            <span>{pathwayInfo.cta}</span>
+            <span>{pathwayCta}</span>
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
@@ -1162,7 +895,7 @@ function ResultsScreen({
       <button
         onClick={() => setShowMobileChat(true)}
         className="lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-electric-green flex items-center justify-center shadow-lg z-40 active:scale-95 transition-transform focus:outline-none focus:ring-2 focus:ring-cobalt focus:ring-offset-2 text-true-black"
-        aria-label="Open career guide chat"
+        aria-label={t("results.careerGuide")}
       >
         <Compass size={28} weight="bold" />
       </button>
@@ -1183,8 +916,8 @@ function ResultsScreen({
               <Compass size={24} weight="bold" />
             </div>
             <div className="flex-1">
-              <h3 className="text-true-black font-bold">Career Guide</h3>
-              <p className="text-grey-3 text-xs">Ask me anything</p>
+              <h3 className="text-true-black font-bold">{t("results.careerGuideShort")}</h3>
+              <p className="text-grey-3 text-xs">{t("results.askAnythingShort")}</p>
             </div>
           </div>
 
@@ -1193,7 +926,7 @@ function ResultsScreen({
               <div className="space-y-4">
                 <div className="bg-grey-1 px-3 py-3 border border-grey-2">
                   <p className="text-charcoal text-sm">
-                    Questions about <strong className="text-true-black">{career.role}</strong>? I got you.
+                    {t("results.questionsAbout")} <strong className="text-true-black">{careerRole}</strong>{t("results.iGotYou")}
                   </p>
                 </div>
                 <div className="space-y-2">
@@ -1243,7 +976,7 @@ function ResultsScreen({
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask me anything..."
+                placeholder={t("results.askPlaceholder")}
                 className="flex-1 bg-white text-true-black placeholder-grey-3 px-4 py-3 text-sm border border-grey-2"
               />
               <button
@@ -1270,8 +1003,8 @@ function ResultsScreen({
             <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-cobalt border-2 border-grey-1"></div>
           </div>
           <div className="flex-1">
-            <h3 className="text-true-black font-bold text-lg">Your Career Guide</h3>
-            <p className="text-grey-3 text-sm">Here to help you navigate</p>
+            <h3 className="text-true-black font-bold text-lg">{t("results.careerGuide")}</h3>
+            <p className="text-grey-3 text-sm">{t("results.hereToHelp")}</p>
           </div>
         </div>
 
@@ -1281,7 +1014,7 @@ function ResultsScreen({
               <div className="flex justify-start">
                 <div className="bg-off-white/10 px-4 py-3 border border-off-white/10 max-w-[85%]">
                   <p className="text-charcoal text-sm leading-relaxed">
-                    Hey! Questions about <strong className="text-true-black">{career.role}</strong>? I got you.
+                    {t("results.heyQuestions")} <strong className="text-true-black">{careerRole}</strong>{t("results.iGotYou")}
                   </p>
                 </div>
               </div>
@@ -1332,7 +1065,7 @@ function ResultsScreen({
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask me anything..."
+              placeholder={t("results.askPlaceholder")}
               className="flex-1 bg-charcoal text-off-white placeholder-grey-3 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cobalt/50 text-sm border border-off-white/20 shadow-sm"
             />
             <button
@@ -1383,7 +1116,7 @@ export default function GuidanceQuiz() {
 
   const handleAnswer = (personality: PersonalityKey) => {
     setScores((prev) => ({ ...prev, [personality]: prev[personality] + 1 }));
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < questionMeta.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
       setScreen("loading");
@@ -1399,10 +1132,10 @@ export default function GuidanceQuiz() {
     setScores({ fixer: 0, architect: 0, connector: 0, creator: 0, builder: 0, maker: 0, strategist: 0, guardian: 0, analyst: 0, healer: 0, educator: 0, advocate: 0 });
   };
 
-  const getWinningCareer = () => {
+  const getWinningPersonality = (): PersonalityKey => {
     const entries = Object.entries(scores) as [PersonalityKey, number][];
     const winner = entries.reduce((a, b) => (b[1] > a[1] ? b : a));
-    return careers[winner[0]];
+    return winner[0];
   };
 
   return (
@@ -1415,15 +1148,14 @@ export default function GuidanceQuiz() {
         {screen === "quiz" && (
           <QuestionScreen
             key={currentQuestion}
-            question={questions[currentQuestion]}
             questionIndex={currentQuestion}
-            totalQuestions={questions.length}
+            totalQuestions={questionMeta.length}
             onAnswer={handleAnswer}
           />
         )}
-        {screen === "loading" && <LoadingScreen career={getWinningCareer()} />}
+        {screen === "loading" && <LoadingScreen personalityKey={getWinningPersonality()} />}
         {screen === "results" && (
-          <ResultsScreen career={getWinningCareer()} ageGroup={ageGroup} onRestart={handleRestart} />
+          <ResultsScreen personalityKey={getWinningPersonality()} ageGroup={ageGroup} onRestart={handleRestart} />
         )}
       </main>
     </>
