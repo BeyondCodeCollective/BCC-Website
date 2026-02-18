@@ -105,7 +105,7 @@ export function Nav() {
                     ? "bg-electric-green text-true-black font-semibold"
                     : scrolled
                     ? "text-true-black/40 hover:text-true-black/70"
-                    : "text-off-white/40 hover:text-off-white/70"
+                    : "text-off-white hover:text-off-white/80"
                 }`}
               >
                 EN
@@ -119,12 +119,12 @@ export function Nav() {
                     ? "bg-electric-green text-true-black font-semibold"
                     : scrolled
                     ? "text-true-black/40 hover:text-true-black/70"
-                    : "text-off-white/40 hover:text-off-white/70"
+                    : "text-off-white hover:text-off-white/80"
                 }`}
               >
                 ES
               </button>
-              <div className={`px-2 py-1.5 ${scrolled ? "text-true-black/30" : "text-off-white/30"}`}>
+              <div className={`px-2 py-1.5 ${scrolled ? "text-true-black/50" : "text-off-white"}`}>
                 <GlobeSimple size={14} weight="bold" />
               </div>
             </div>
@@ -202,7 +202,7 @@ export function Nav() {
                 className={`px-5 py-3 transition-all ${
                   locale === "en"
                     ? "bg-electric-green text-true-black font-semibold"
-                    : "text-off-white/40 hover:text-off-white/70"
+                    : "text-off-white hover:text-off-white/80"
                 }`}
               >
                 ENGLISH
@@ -217,12 +217,12 @@ export function Nav() {
                 className={`px-5 py-3 transition-all ${
                   locale === "es"
                     ? "bg-electric-green text-true-black font-semibold"
-                    : "text-off-white/40 hover:text-off-white/70"
+                    : "text-off-white hover:text-off-white/80"
                 }`}
               >
                 ESPA&Ntilde;OL
               </button>
-              <div className="px-3 py-3 text-off-white/30">
+              <div className="px-3 py-3 text-off-white">
                 <GlobeSimple size={18} weight="bold" />
               </div>
             </div>
