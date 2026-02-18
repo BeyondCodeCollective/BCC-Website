@@ -140,12 +140,54 @@ export function Nav() {
             </a>
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex flex-col gap-1.5 md:hidden"
-            aria-label="Toggle menu"
-          >
+          {/* Mobile: language toggle + hamburger */}
+          <div className="flex items-center gap-3 md:hidden">
+            <div
+              className={`flex items-center gap-0 border font-mono text-[10px] tracking-wider ${
+                scrolled ? "border-true-black/15" : "border-off-white/20"
+              }`}
+              style={{ fontFamily: "var(--font-mono)" }}
+              role="radiogroup"
+              aria-label="Language"
+            >
+              <button
+                onClick={() => switchLocale("en")}
+                role="radio"
+                aria-checked={locale === "en"}
+                className={`relative px-2 py-1 transition-all ${
+                  locale === "en"
+                    ? "bg-electric-green text-true-black font-semibold"
+                    : scrolled
+                    ? "text-true-black/40 hover:text-true-black/70"
+                    : "text-off-white hover:text-off-white/80"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => switchLocale("es")}
+                role="radio"
+                aria-checked={locale === "es"}
+                className={`relative px-2 py-1 transition-all ${
+                  locale === "es"
+                    ? "bg-electric-green text-true-black font-semibold"
+                    : scrolled
+                    ? "text-true-black/40 hover:text-true-black/70"
+                    : "text-off-white hover:text-off-white/80"
+                }`}
+              >
+                ES
+              </button>
+              <div className={`px-1.5 py-1 ${scrolled ? "text-true-black/50" : "text-off-white"}`}>
+                <GlobeSimple size={12} weight="bold" />
+              </div>
+            </div>
+
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="flex flex-col gap-1.5"
+              aria-label="Toggle menu"
+            >
             <span
               className={`block h-0.5 w-6 transition-transform ${hamburgerColor} ${
                 mobileOpen ? "translate-y-2 rotate-45" : ""
@@ -161,7 +203,8 @@ export function Nav() {
                 mobileOpen ? "-translate-y-2 -rotate-45" : ""
               }`}
             />
-          </button>
+            </button>
+          </div>
         </div>
       </nav>
 
