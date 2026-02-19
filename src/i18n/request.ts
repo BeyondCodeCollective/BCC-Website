@@ -13,6 +13,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       ...(await import(`../messages/${locale}/common.json`)).default,
       ...(await import(`../messages/${locale}/landing.json`)).default,
       ...(await import(`../messages/${locale}/quiz.json`)).default,
+      ...(await import(`../messages/${locale}/quiz-v2.json`)).default,
     },
   };
 });

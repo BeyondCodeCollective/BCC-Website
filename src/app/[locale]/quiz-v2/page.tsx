@@ -276,7 +276,7 @@ const questionMeta: QuestionMeta[] = [
 // ============================================
 
 function HomeScreen({ onSelectAge }: { onSelectAge: (age: AgeGroup) => void }) {
-  const t = useTranslations("quiz");
+  const t = useTranslations("quiz-v2");
 
   return (
     <div className="h-[100dvh] flex">
@@ -342,7 +342,7 @@ function LeadCaptureScreen({
   onSubmit: (contact: { type: 'email' | 'phone'; value: string }) => void;
   onSkip: () => void;
 }) {
-  const t = useTranslations("quiz");
+  const t = useTranslations("quiz-v2");
   const [contactType, setContactType] = useState<'email' | 'phone'>('email');
   const [value, setValue] = useState('');
   const [isValid, setIsValid] = useState(false);
@@ -463,7 +463,7 @@ function LeadCaptureScreen({
 }
 
 function LoadingScreen({ personalityKey }: { personalityKey: PersonalityKey }) {
-  const t = useTranslations("quiz");
+  const t = useTranslations("quiz-v2");
   const [stage, setStage] = useState(0);
 
   const stages: string[] = [];
@@ -520,7 +520,7 @@ function QuestionScreen({
   totalQuestions: number;
   onAnswer: (personality: PersonalityKey) => void;
 }) {
-  const t = useTranslations("quiz");
+  const t = useTranslations("quiz-v2");
   const [selected, setSelected] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const meta = questionMeta[questionIndex];
@@ -666,7 +666,7 @@ function ResultsScreen({
   ageGroup: AgeGroup;
   onRestart: () => void;
 }) {
-  const t = useTranslations("quiz");
+  const t = useTranslations("quiz-v2");
   const locale = useLocale();
   const career = careerMeta[personalityKey];
   const [hoursPerDay, setHoursPerDay] = useState<2 | 4 | 6>(4);

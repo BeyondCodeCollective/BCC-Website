@@ -1,5 +1,5 @@
 {
-  "quiz": {
+  "quiz-v2": {
   "home": {
     "brand": "Beyond Code Collective",
     "backToHome": "Volver al Inicio",
@@ -51,7 +51,7 @@
     "salaryRange": "Rango salarial",
     "dayToDay": "El d\u00eda a d\u00eda se ve as\u00ed",
     "initiativesForYou": "[ INICIATIVAS PARA TI ]",
-    "startWithCourses": "[ COMIENZA CON ESTOS CURSOS ]",
+    "startWithCourses": "[ COMIENZA CON ESTOS CURSOS BCC ]",
     "careerGuide": "Tu Gu\u00eda de Carrera",
     "hereToHelp": "Aqu\u00ed para ayudarte a navegar",
     "careerGuideShort": "Gu\u00eda de Carrera",
@@ -82,12 +82,12 @@
         "Documentar soluciones y procesos"
       ],
       "forYouth": {
-        "items": ["Talleres", "Code Along", "Campamentos de Verano"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["Talleres de Ciberseguridad", "Code Along Club", "Talleres de Scratch"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["CompTIA A+", "CompTIA Network+", "Fundamentos de Mesa de Ayuda"],
-        "cta": "Iniciar Ruta de TI"
+        "items": ["CompTIA IT Fundamentals (ITF+)", "Workplace Fundamentals", "AI Fundamentals"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "architect": {
@@ -102,12 +102,12 @@
         "Mejorar decisiones de negocio con datos"
       ],
       "forYouth": {
-        "items": ["AI Hive", "Talleres", "Code Along"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["The Happiness Code", "Intro to Data Science", "Talleres de Python"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["An\u00e1lisis de Datos", "Python para Ciencia de Datos", "Fundamentos de SQL"],
-        "cta": "Iniciar Ruta de Datos"
+        "items": ["Data Science 101", "Data Science 102", "AI Fundamentals"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "connector": {
@@ -122,12 +122,12 @@
         "Colaborar con stakeholders de diferentes departamentos"
       ],
       "forYouth": {
-        "items": ["Culture Coded", "Campamentos de Verano", "Talleres"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["Code Along Club", "AI Explorers", "Talleres"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Administrador Salesforce", "An\u00e1lisis de Negocios", "Fundamentos de CRM"],
-        "cta": "Iniciar Ruta Salesforce"
+        "items": ["Salesforce Administration", "Zapier Fundamentals", "Workplace Fundamentals"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "creator": {
@@ -142,12 +142,12 @@
         "Mejorar productos basado en retroalimentaci\u00f3n"
       ],
       "forYouth": {
-        "items": ["Culture Coded", "Code Along", "Campamentos de Verano"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["P5 JavaScript: Code Art", "Scratch Animation", "Digital Vision Boards with AI"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Fundamentos de UX", "Maestr\u00eda en Figma", "Design Thinking"],
-        "cta": "Iniciar Ruta de Dise\u00f1o"
+        "items": ["Figma Make Fundamentals", "Webflow Fundamentals", "Designing with Canva"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "builder": {
@@ -162,32 +162,32 @@
         "Usar muchos sombreros y resolver problemas a diario"
       ],
       "forYouth": {
-        "items": ["Code Along", "Talleres", "Campamentos de Verano"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["Entrepreneurship 101", "Websites for Social Innovation", "Professional Website with WIX"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Fundamentos de Negocios", "E-commerce y Shopify", "Bases del Freelance"],
-        "cta": "Iniciar Ruta de Negocios"
+        "items": ["AI Tools for Small Business", "Digital Storytelling for Entrepreneurs", "Zapier Fundamentals"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "maker": {
       "name": "El Hacedor",
       "tagline": "Construyes cosas que importan.",
-      "role": "Profesional de Oficios T\u00e9cnicos",
+      "role": "Tecn\u00f3logo Creativo",
       "dayToDay": [
-        "Trabajar con las manos en proyectos reales",
-        "Leer planos y documentos t\u00e9cnicos",
-        "Instalar, mantener y reparar sistemas",
-        "Resolver problemas en sitios de trabajo",
-        "Ver resultados tangibles de tu trabajo cada d\u00eda"
+        "Prototipar experiencias inmersivas con VR y AR",
+        "Construir proyectos interactivos que mezclan arte y tecnolog\u00eda",
+        "Dise\u00f1ar y programar robots y sensores",
+        "Colaborar en proyectos de invenci\u00f3n y creaci\u00f3n",
+        "Convertir ideas creativas en prototipos funcionales"
       ],
       "forYouth": {
-        "items": ["Talleres", "Campamentos de Verano", "Code Along"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["VR/AR Game Design Intensive", "Green Thumb Robotics", "Becoming an Inventor"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Exploraci\u00f3n de Oficios", "Preparaci\u00f3n para Aprendizaje", "Certificaciones T\u00e9cnicas"],
-        "cta": "Explorar Oficios"
+        "items": ["VR/AR Game Design Intensive", "AI Fundamentals", "Code Along Club"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "strategist": {
@@ -202,12 +202,12 @@
         "Convertir el caos en progreso organizado"
       ],
       "forYouth": {
-        "items": ["Iniciativas de Liderazgo", "Campamentos de Verano", "Talleres"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["Code Along Club", "Entrepreneurship 101", "Talleres"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Certificaci\u00f3n PMP", "Agile/Scrum", "Fundamentos de Liderazgo"],
-        "cta": "Iniciar Ruta de Gesti\u00f3n"
+        "items": ["MASS (Mindset + Soft Skills)", "Workplace Fundamentals", "Zapier Fundamentals"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "guardian": {
@@ -222,52 +222,52 @@
         "Mantenerte adelante de hackers y amenazas"
       ],
       "forYouth": {
-        "items": ["Clubs de Ciberseguridad", "Talleres", "Campamentos de Verano"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["Cybersafety (Edades 10-13)", "Cybersafety (Edades 14-18)", "Talleres de Python"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Security+", "Hacking \u00c9tico", "Seguridad de Redes"],
-        "cta": "Iniciar Ruta de Seguridad"
+        "items": ["CompTIA IT Fundamentals (ITF+)", "AI Fundamentals", "Digital Safety for Wisdom Leaders"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "analyst": {
       "name": "El Detective",
       "tagline": "Encuentras la verdad en los detalles.",
-      "role": "Analista de Inteligencia de Negocios",
+      "role": "Narrador de Datos",
       "dayToDay": [
-        "Explorar datos para descubrir informaci\u00f3n valiosa",
-        "Construir reportes que impulsen decisiones",
-        "Entrevistar stakeholders para entender necesidades",
-        "Traducir hallazgos complejos en historias simples",
-        "Detectar tendencias que otros pasan por alto"
+        "Descubrir tendencias y patrones en datos del mundo real",
+        "Convertir n\u00fameros crudos en narrativas convincentes",
+        "Construir visualizaciones que hagan los datos comprensibles",
+        "Conectar contexto cultural con an\u00e1lisis de datos",
+        "Presentar hallazgos que impulsen la acci\u00f3n"
       ],
       "forYouth": {
-        "items": ["Clubs de Datos", "Talleres", "AI Hive"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["The Happiness Code", "Intro to Data Science", "Python + Tech Stats"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Power BI", "Tableau", "An\u00e1lisis de Negocios"],
-        "cta": "Iniciar Ruta de An\u00e1lisis"
+        "items": ["Data Science 101", "Data Science 102", "AI Fundamentals"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "healer": {
       "name": "El Sanador",
       "tagline": "Ayudas a las personas a sentirse mejor.",
-      "role": "Especialista en Tecnolog\u00eda de Salud",
+      "role": "Especialista en IA para Impacto Social",
       "dayToDay": [
-        "Apoyar sistemas de tecnolog\u00eda de salud",
-        "Capacitar personal m\u00e9dico en nuevas herramientas",
-        "Asegurar que los datos de pacientes sean seguros y accesibles",
-        "Resolver problemas de equipos m\u00e9dicos cr\u00edticos",
-        "Hacer que la tecnolog\u00eda funcione para quienes salvan vidas"
+        "Aplicar herramientas de IA para resolver desaf\u00edos comunitarios",
+        "Capacitar a otros en el uso seguro y efectivo de la tecnolog\u00eda",
+        "Dise\u00f1ar soluciones tecnol\u00f3gicas centradas en las personas",
+        "Conectar la tecnolog\u00eda emergente con las necesidades cotidianas",
+        "Asegurar que la IA sirva a las comunidades, no solo a las corporaciones"
       ],
       "forYouth": {
-        "items": ["Talleres de Tecnolog\u00eda de Salud", "Campamentos de Verano", "Iniciativas STEM"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["AI Explorers", "Coding for Change", "Code Along Club"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Certificaci\u00f3n IT de Salud", "Terminolog\u00eda M\u00e9dica", "Capacitaci\u00f3n HIPAA"],
-        "cta": "Iniciar Ruta de Tecnolog\u00eda de Salud"
+        "items": ["AI Fundamentals", "AI Tools for Classrooms", "Digital Safety for Wisdom Leaders"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "educator": {
@@ -282,12 +282,12 @@
         "Ver crecer a las personas gracias a tu gu\u00eda"
       ],
       "forYouth": {
-        "items": ["Mentor\u00eda entre Pares", "Talleres", "Iniciativas de Liderazgo"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["Code Along Club", "AI Explorers", "Scratch: Interactive Story"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Dise\u00f1o Instruccional", "Teor\u00eda de Aprendizaje Adulto", "Desarrollo de Cursos"],
-        "cta": "Iniciar Ruta de Educaci\u00f3n"
+        "items": ["AI Tools for Classrooms", "Code Along Club", "AI Fundamentals"],
+        "cta": "Explorar Cursos BCC"
       }
     },
     "advocate": {
@@ -302,12 +302,12 @@
         "Generar impacto real en la vida de las personas"
       ],
       "forYouth": {
-        "items": ["Servicio Comunitario", "Iniciativas de Liderazgo", "Talleres"],
-        "cta": "Explorar Iniciativas BCC"
+        "items": ["Coding for Change: Activism through Animation", "Code Along Club", "Climate Games"],
+        "cta": "Explorar Cursos BCC"
       },
       "forAdult": {
-        "items": ["Tecnolog\u00eda sin Fines de Lucro", "Inclusi\u00f3n Digital", "Organizaci\u00f3n Comunitaria"],
-        "cta": "Iniciar Ruta Comunitaria"
+        "items": ["AI Tools for Classrooms", "Digital Safety for Wisdom Leaders", "AI Fundamentals"],
+        "cta": "Explorar Cursos BCC"
       }
     }
   },
