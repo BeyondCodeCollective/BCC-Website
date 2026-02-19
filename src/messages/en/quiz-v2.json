@@ -11,7 +11,9 @@
     "under18Desc": "Middle school, high school, or college",
     "over18Title": "Ready to level up",
     "over18Desc": "Looking for a new career or skill",
-    "meta": "[ 2 MINUTES ] \u00b7 NO WRONG ANSWERS"
+    "meta": "[ 2 MINUTES ] \u00b7 NO WRONG ANSWERS",
+    "disclaimer": "Results are AI-generated and for guidance only.",
+    "parentalNote": "Designed for use with a parent or guardian."
   },
   "capture": {
     "brand": "Beyond Code",
@@ -48,6 +50,7 @@
     "hrsDay": "hrs/day",
     "months": "Months",
     "basedOnAverages": "*BASED ON STUDENT AVERAGES",
+    "estimatesDisclaimer": "Salary and timeline estimates are based on industry averages and are not guaranteed.",
     "salaryRange": "Salary range",
     "dayToDay": "Day-to-day looks like",
     "initiativesForYou": "[ INITIATIVES FOR YOU ]",

@@ -310,6 +310,7 @@ function HomeScreen({ onSelectAge }: { onSelectAge: (age: AgeGroup) => void }) {
                 <div className="text-electric-green mb-2" aria-hidden="true"><Backpack size={28} weight="bold" /></div>
                 <div className="text-lg font-semibold text-off-white mb-1">{t("home.under18Title")}</div>
                 <div className="text-off-white/60 text-sm">{t("home.under18Desc")}</div>
+                <div className="text-off-white/40 text-[10px] mt-2" style={{ fontFamily: "var(--font-mono)" }}>{t("home.parentalNote")}</div>
               </button>
 
               <button
@@ -324,6 +325,7 @@ function HomeScreen({ onSelectAge }: { onSelectAge: (age: AgeGroup) => void }) {
             </div>
 
             <p className="mt-6 md:mt-10 text-off-white/50 text-xs md:text-sm" style={{ fontFamily: "var(--font-mono)" }}>{t("home.meta")}</p>
+            <p className="mt-3 text-off-white/30 text-[10px] md:text-[11px] leading-tight" style={{ fontFamily: "var(--font-mono)" }}>{t("home.disclaimer")}</p>
           </div>
         </div>
       </div>
@@ -848,6 +850,8 @@ function ResultsScreen({
               <span>${(career.salary.high / 1000).toFixed(0)}k</span>
             </div>
           </div>
+
+          <p className="text-grey-3 text-[10px] md:text-[11px] leading-tight mb-6 md:mb-8 -mt-4 md:-mt-6" style={{ fontFamily: "var(--font-mono)" }}>{t("results.estimatesDisclaimer")}</p>
 
           <div className="mb-6 md:mb-8 bg-white p-4 md:p-6 border border-grey-2">
             <h3 className="text-base md:text-lg font-bold text-true-black mb-3 md:mb-4">{t("results.dayToDay")}</h3>

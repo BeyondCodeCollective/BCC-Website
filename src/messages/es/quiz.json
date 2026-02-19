@@ -11,7 +11,9 @@
     "under18Desc": "Secundaria, preparatoria o universidad",
     "over18Title": "Listo para avanzar",
     "over18Desc": "Buscando una nueva carrera o habilidad",
-    "meta": "[ 2 MINUTOS ] \u00b7 NO HAY RESPUESTAS INCORRECTAS"
+    "meta": "[ 2 MINUTOS ] \u00b7 NO HAY RESPUESTAS INCORRECTAS",
+    "disclaimer": "Los resultados son generados por IA y son solo para orientaci\u00f3n.",
+    "parentalNote": "Dise\u00f1ado para uso con un padre o tutor."
   },
   "capture": {
     "brand": "Beyond Code",
@@ -48,6 +50,7 @@
     "hrsDay": "hrs/d\u00eda",
     "months": "Meses",
     "basedOnAverages": "*BASADO EN PROMEDIOS DE ESTUDIANTES",
+    "estimatesDisclaimer": "Los estimados de salario y tiempo se basan en promedios de la industria y no est\u00e1n garantizados.",
     "salaryRange": "Rango salarial",
     "dayToDay": "El d\u00eda a d\u00eda se ve as\u00ed",
     "initiativesForYou": "[ INICIATIVAS PARA TI ]",
