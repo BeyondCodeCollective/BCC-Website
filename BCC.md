@@ -24,7 +24,7 @@ BCC is intergenerational by design: ages 7 to 107. Students, career changers, pa
 | **Cristina Mancini** | Founder & CEO of both BCC and Black Girls Code |
 | **Fonz Morris** | Lead developer, product architect |
 | **Kennedy Sermon** | Team coordinator |
-| **Shannon** | Legal, privacy policy, terms of use coordination |
+| **Shannan McMillan-Gibbs** | Legal, privacy policy, terms of use coordination |
 
 ---
 
@@ -296,7 +296,7 @@ All disclaimers exist in both English and Spanish.
 
 ### Pending Legal Items
 
-- Terms of Use and Privacy Policy pages (Shannon + legal team)
+- Terms of Use and Privacy Policy pages (Shannan McMillan-Gibbs + legal team)
 - Parental consent mechanism for 7-17 track
 - Incident response plan for inappropriate AI responses
 - Periodic manual testing of chat guardrails
