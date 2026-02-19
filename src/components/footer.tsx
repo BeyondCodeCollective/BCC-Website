@@ -57,13 +57,17 @@ export function Footer() {
             </p>
             <div className="mt-3 flex gap-4">
               <a
-                href="#"
+                href="https://www.instagram.com/waborebcc/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-off-white/70 transition-colors hover:text-off-white"
               >
                 {t("instagram")}
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/beyond-code-collective/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-off-white/70 transition-colors hover:text-off-white"
               >
                 {t("linkedin")}
@@ -79,13 +83,13 @@ export function Footer() {
           </p>
           <div className="flex gap-6">
             <a
-              href="#"
+              href="/privacy"
               className="text-xs text-off-white/60 transition-colors hover:text-off-white"
             >
               {t("privacyPolicy")}
             </a>
             <a
-              href="#"
+              href="/terms"
               className="text-xs text-off-white/60 transition-colors hover:text-off-white"
             >
               {t("termsOfUse")}

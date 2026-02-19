@@ -168,7 +168,10 @@ export async function POST(request: NextRequest) {
       courses: courses || [],
     });
 
-    const fromEmail = process.env.RESEND_FROM_EMAIL || "BCC Career Quiz <onboarding@resend.dev>";
+    if (!process.env.RESEND_FROM_EMAIL) {
+      throw new Error("RESEND_FROM_EMAIL is not configured");
+    }
+    const fromEmail = process.env.RESEND_FROM_EMAIL;
 
     const { error } = await resend.emails.send({
       from: fromEmail,

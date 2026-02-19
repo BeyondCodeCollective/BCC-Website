@@ -66,7 +66,7 @@ export function Nav() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           {/* Logo — left aligned per brand rules */}
-          <a href="#" className="flex-shrink-0">
+          <a href="/" className="flex-shrink-0">
             <Logo
               variant="stacked"
               color={logoColor}
