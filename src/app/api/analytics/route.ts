@@ -21,11 +21,25 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "No events provided" }, { status: 400 });
     }
 
+    // Cap batch size to prevent abuse
+    if (events.length > 50) {
+      return NextResponse.json({ error: "Too many events" }, { status: 400 });
+    }
+
     // Ensure tables exist on first call
     if (!tablesReady) {
       await ensureTables();
       tablesReady = true;
     }
+
+    const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    const VALID_VERSIONS = new Set(["quiz", "quiz-v2"]);
+    const VALID_LOCALES = new Set(["en", "es"]);
+    const VALID_EVENTS = new Set([
+      "quiz_started", "lead_captured", "lead_skipped", "question_answered",
+      "quiz_completed", "results_viewed", "results_email_sent", "save_results_email",
+      "chat_started", "chat_message", "cta_clicked", "quiz_restarted",
+    ]);
 
     for (const event of events) {
       const {
@@ -36,12 +50,17 @@ export async function POST(request: NextRequest) {
         locale = "en",
       } = event;
 
+      // Validate required fields exist and match expected formats
       if (!session_id || !quiz_version || !event_type) continue;
+      if (!UUID_RE.test(session_id)) continue;
+      if (!VALID_VERSIONS.has(quiz_version)) continue;
+      if (!VALID_EVENTS.has(event_type)) continue;
+      const safeLocale = VALID_LOCALES.has(locale) ? locale : "en";
 
       // Insert into quiz_events
       await sql`
         INSERT INTO quiz_events (session_id, quiz_version, event_type, event_data, locale)
-        VALUES (${session_id}, ${quiz_version}, ${event_type}, ${JSON.stringify(event_data)}, ${locale})
+        VALUES (${session_id}, ${quiz_version}, ${event_type}, ${JSON.stringify(event_data)}, ${safeLocale})
       `;
 
       // Handle quiz_started — create a completion row
@@ -49,7 +68,7 @@ export async function POST(request: NextRequest) {
         const ageGroup = (event_data.age_group as string) || "unknown";
         await sql`
           INSERT INTO quiz_completions (session_id, quiz_version, age_group, personality_result, locale)
-          VALUES (${session_id}, ${quiz_version}, ${ageGroup}, 'pending', ${locale})
+          VALUES (${session_id}, ${quiz_version}, ${ageGroup}, 'pending', ${safeLocale})
           ON CONFLICT (session_id) DO NOTHING
         `;
       }

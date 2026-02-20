@@ -4,16 +4,18 @@ import { ensureTables } from "@/lib/db";
 
 let tablesReady = false;
 
-function getDateFilter(range: string): string {
+/** Returns an ISO timestamp cutoff — all queries use `created_at >= $cutoff` */
+function getDateCutoff(range: string): string {
+  const now = new Date();
   switch (range) {
     case "today":
-      return "AND created_at >= CURRENT_DATE";
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
     case "7d":
-      return "AND created_at >= NOW() - INTERVAL '7 days'";
+      return new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
     case "30d":
-      return "AND created_at >= NOW() - INTERVAL '30 days'";
+      return new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
     default:
-      return "";
+      return new Date(0).toISOString(); // epoch — effectively "all time"
   }
 }
 
@@ -31,39 +33,48 @@ export async function GET(request: NextRequest) {
       tablesReady = true;
     }
 
-    const dateFilter = getDateFilter(range);
+    const cutoff = getDateCutoff(range);
 
     // Top-line metrics from quiz_events
-    const startsResult = await sql.query(
-      `SELECT COUNT(*) as count FROM quiz_events WHERE event_type = 'quiz_started' ${dateFilter}`
-    );
+    const startsResult = await sql`
+      SELECT COUNT(*) as count FROM quiz_events
+      WHERE event_type = 'quiz_started' AND created_at >= ${cutoff}::timestamptz
+    `;
     const totalStarts = parseInt(startsResult.rows[0].count);
 
-    const completionsResult = await sql.query(
-      `SELECT COUNT(*) as count FROM quiz_events WHERE event_type = 'quiz_completed' ${dateFilter}`
-    );
+    const completionsResult = await sql`
+      SELECT COUNT(*) as count FROM quiz_events
+      WHERE event_type = 'quiz_completed' AND created_at >= ${cutoff}::timestamptz
+    `;
     const totalCompletions = parseInt(completionsResult.rows[0].count);
 
-    const leadsResult = await sql.query(
-      `SELECT COUNT(*) as count FROM quiz_events WHERE event_type = 'lead_captured' ${dateFilter}`
-    );
+    const leadsResult = await sql`
+      SELECT COUNT(*) as count FROM quiz_events
+      WHERE event_type = 'lead_captured' AND created_at >= ${cutoff}::timestamptz
+    `;
     const totalLeads = parseInt(leadsResult.rows[0].count);
 
-    const skipsResult = await sql.query(
-      `SELECT COUNT(*) as count FROM quiz_events WHERE event_type = 'lead_skipped' ${dateFilter}`
-    );
+    const skipsResult = await sql`
+      SELECT COUNT(*) as count FROM quiz_events
+      WHERE event_type = 'lead_skipped' AND created_at >= ${cutoff}::timestamptz
+    `;
     const totalSkips = parseInt(skipsResult.rows[0].count);
 
     // Email leads specifically
-    const emailLeadsResult = await sql.query(
-      `SELECT COUNT(*) as count FROM quiz_events WHERE event_type = 'lead_captured' AND event_data->>'lead_type' = 'email' ${dateFilter}`
-    );
+    const emailLeadsResult = await sql`
+      SELECT COUNT(*) as count FROM quiz_events
+      WHERE event_type = 'lead_captured'
+        AND event_data->>'lead_type' = 'email'
+        AND created_at >= ${cutoff}::timestamptz
+    `;
     const emailLeads = parseInt(emailLeadsResult.rows[0].count);
 
     // Funnel data — count each event type
-    const funnelResult = await sql.query(
-      `SELECT event_type, COUNT(*) as count FROM quiz_events WHERE 1=1 ${dateFilter} GROUP BY event_type ORDER BY count DESC`
-    );
+    const funnelResult = await sql`
+      SELECT event_type, COUNT(*) as count FROM quiz_events
+      WHERE created_at >= ${cutoff}::timestamptz
+      GROUP BY event_type ORDER BY count DESC
+    `;
 
     const funnelSteps = [
       "quiz_started",
@@ -79,7 +90,8 @@ export async function GET(request: NextRequest) {
       "quiz_restarted",
     ];
 
-    const funnelMap = new Map(funnelResult.rows.map((r: { event_type: string; count: string }) => [r.event_type, parseInt(r.count)]));
+    const funnelMap = new Map(// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    funnelResult.rows.map((r: any) => [r.event_type, parseInt(r.count)]));
     const funnel = funnelSteps.map((step) => ({
       step,
       count: funnelMap.get(step) || 0,
@@ -87,49 +99,62 @@ export async function GET(request: NextRequest) {
     }));
 
     // Personality breakdown from completions
-    const personalityResult = await sql.query(
-      `SELECT personality_result, COUNT(*) as count FROM quiz_completions WHERE personality_result != 'pending' ${dateFilter} GROUP BY personality_result ORDER BY count DESC`
-    );
-    const totalPersonalities = personalityResult.rows.reduce((sum: number, r: { count: string }) => sum + parseInt(r.count), 0);
-    const personalities = personalityResult.rows.map((r: { personality_result: string; count: string }) => ({
+    const personalityResult = await sql`
+      SELECT personality_result, COUNT(*) as count FROM quiz_completions
+      WHERE personality_result != 'pending' AND created_at >= ${cutoff}::timestamptz
+      GROUP BY personality_result ORDER BY count DESC
+    `;
+    const totalPersonalities = personalityResult.rows.reduce(// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (sum: number, r: any) => sum + parseInt(r.count), 0);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const personalities = personalityResult.rows.map((r: any) => ({
       key: r.personality_result,
       count: parseInt(r.count),
       percentage: totalPersonalities > 0 ? Math.round((parseInt(r.count) / totalPersonalities) * 100) : 0,
     }));
 
     // Demographics — age groups
-    const ageResult = await sql.query(
-      `SELECT age_group, COUNT(*) as count FROM quiz_completions WHERE 1=1 ${dateFilter} GROUP BY age_group`
-    );
-    const totalAge = ageResult.rows.reduce((sum: number, r: { count: string }) => sum + parseInt(r.count), 0);
-    const ageGroups = ageResult.rows.map((r: { age_group: string; count: string }) => ({
+    const ageResult = await sql`
+      SELECT age_group, COUNT(*) as count FROM quiz_completions
+      WHERE created_at >= ${cutoff}::timestamptz
+      GROUP BY age_group
+    `;
+    const totalAge = ageResult.rows.reduce(// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (sum: number, r: any) => sum + parseInt(r.count), 0);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const ageGroups = ageResult.rows.map((r: any) => ({
       group: r.age_group,
       count: parseInt(r.count),
       percentage: totalAge > 0 ? Math.round((parseInt(r.count) / totalAge) * 100) : 0,
     }));
 
     // Demographics — locales
-    const localeResult = await sql.query(
-      `SELECT locale, COUNT(*) as count FROM quiz_completions WHERE 1=1 ${dateFilter} GROUP BY locale`
-    );
-    const totalLocale = localeResult.rows.reduce((sum: number, r: { count: string }) => sum + parseInt(r.count), 0);
-    const locales = localeResult.rows.map((r: { locale: string; count: string }) => ({
+    const localeResult = await sql`
+      SELECT locale, COUNT(*) as count FROM quiz_completions
+      WHERE created_at >= ${cutoff}::timestamptz
+      GROUP BY locale
+    `;
+    const totalLocale = localeResult.rows.reduce(// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (sum: number, r: any) => sum + parseInt(r.count), 0);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const locales = localeResult.rows.map((r: any) => ({
       locale: r.locale,
       count: parseInt(r.count),
       percentage: totalLocale > 0 ? Math.round((parseInt(r.count) / totalLocale) * 100) : 0,
     }));
 
     // Engagement metrics from completions
-    const engagementResult = await sql.query(
-      `SELECT
+    const engagementResult = await sql`
+      SELECT
         COUNT(*) FILTER (WHERE chat_used = TRUE) as chat_users,
         AVG(chat_messages) FILTER (WHERE chat_used = TRUE) as avg_chat_msgs,
         COUNT(*) FILTER (WHERE cta_clicked = TRUE) as cta_clicks,
         COUNT(*) FILTER (WHERE email_sent = TRUE) as emails_sent,
         COUNT(*) FILTER (WHERE personality_result != 'pending') as completed,
         COUNT(*) as total
-      FROM quiz_completions WHERE 1=1 ${dateFilter}`
-    );
+      FROM quiz_completions
+      WHERE created_at >= ${cutoff}::timestamptz
+    `;
     const eng = engagementResult.rows[0];
     const engTotal = parseInt(eng.total) || 1;
     const engCompleted = parseInt(eng.completed) || 1;
@@ -142,18 +167,19 @@ export async function GET(request: NextRequest) {
     };
 
     // Timeseries — daily counts
-    const timeseriesResult = await sql.query(
-      `SELECT
-        DATE(e.created_at) as date,
-        COUNT(*) FILTER (WHERE e.event_type = 'quiz_started') as starts,
-        COUNT(*) FILTER (WHERE e.event_type = 'quiz_completed') as completions,
-        COUNT(*) FILTER (WHERE e.event_type = 'lead_captured') as leads
-      FROM quiz_events e
-      WHERE 1=1 ${dateFilter}
-      GROUP BY DATE(e.created_at)
-      ORDER BY date ASC`
-    );
-    const timeseries = timeseriesResult.rows.map((r: { date: string; starts: string; completions: string; leads: string }) => ({
+    const timeseriesResult = await sql`
+      SELECT
+        DATE(created_at) as date,
+        COUNT(*) FILTER (WHERE event_type = 'quiz_started') as starts,
+        COUNT(*) FILTER (WHERE event_type = 'quiz_completed') as completions,
+        COUNT(*) FILTER (WHERE event_type = 'lead_captured') as leads
+      FROM quiz_events
+      WHERE created_at >= ${cutoff}::timestamptz
+      GROUP BY DATE(created_at)
+      ORDER BY date ASC
+    `;
+    const timeseries = timeseriesResult.rows// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .map((r: any) => ({
       date: r.date,
       starts: parseInt(r.starts),
       completions: parseInt(r.completions),
