@@ -4,27 +4,27 @@ interface MetricCardProps {
   label: string;
   value: number | string;
   suffix?: string;
-  accent?: "cobalt" | "green" | "orange";
+  accent?: "default" | "green" | "orange";
 }
 
-export default function MetricCard({ label, value, suffix = "", accent = "cobalt" }: MetricCardProps) {
-  const accentClass = {
-    cobalt: "text-cobalt",
+export default function MetricCard({ label, value, suffix = "", accent = "default" }: MetricCardProps) {
+  const valueClass = {
+    default: "text-off-white",
     green: "text-electric-green",
-    orange: "text-[#FF4C00]",
+    orange: "text-[#FF6B35]",
   }[accent];
 
   return (
-    <div className="bg-[#2F2F2F] border border-white/5 p-5">
+    <div className="border border-white/10 rounded-lg px-5 py-4">
       <p
-        className="text-xs uppercase tracking-widest text-[#646464] mb-2"
+        className="text-[11px] uppercase tracking-wider text-white/40 mb-1"
         style={{ fontFamily: "var(--font-mono)" }}
       >
         {label}
       </p>
-      <p className={`text-4xl md:text-5xl font-heading tracking-tight ${accentClass}`}>
+      <p className={`text-3xl font-heading tracking-tight ${valueClass}`}>
         {value}
-        {suffix && <span className="text-xl ml-1">{suffix}</span>}
+        {suffix && <span className="text-lg ml-0.5 text-white/50">{suffix}</span>}
       </p>
     </div>
   );

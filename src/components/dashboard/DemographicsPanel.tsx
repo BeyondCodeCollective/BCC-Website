@@ -11,23 +11,23 @@ function BarRow({ label, count, percentage, color }: { label: string; count: num
   return (
     <div className="flex items-center gap-3">
       <p
-        className="text-xs text-[#646464] w-20 shrink-0 text-right uppercase"
+        className="text-xs text-white/50 w-24 shrink-0 text-right"
         style={{ fontFamily: "var(--font-mono)" }}
       >
         {label}
       </p>
-      <div className="flex-1 h-7 bg-white/5 relative overflow-hidden">
+      <div className="flex-1 h-8 bg-white/5 rounded relative overflow-hidden">
         <div
-          className={`h-full transition-all duration-500 ${color}`}
-          style={{ width: `${percentage}%` }}
+          className={`h-full rounded transition-all duration-500 ${color}`}
+          style={{ width: `${percentage}%`, minWidth: count > 0 ? 4 : 0 }}
         />
-        <span
-          className="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-off-white/70"
-          style={{ fontFamily: "var(--font-mono)" }}
-        >
-          {count} ({percentage}%)
-        </span>
       </div>
+      <p
+        className="text-xs text-white/70 w-20 shrink-0 tabular-nums text-right"
+        style={{ fontFamily: "var(--font-mono)" }}
+      >
+        {count} ({percentage}%)
+      </p>
     </div>
   );
 }
@@ -53,7 +53,7 @@ export default function DemographicsPanel({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div>
         <p
-          className="text-xs uppercase tracking-widest text-[#646464] mb-3"
+          className="text-[11px] uppercase tracking-wider text-white/40 mb-3"
           style={{ fontFamily: "var(--font-mono)" }}
         >
           Age Group
@@ -72,7 +72,7 @@ export default function DemographicsPanel({
       </div>
       <div>
         <p
-          className="text-xs uppercase tracking-widest text-[#646464] mb-3"
+          className="text-[11px] uppercase tracking-wider text-white/40 mb-3"
           style={{ fontFamily: "var(--font-mono)" }}
         >
           Language

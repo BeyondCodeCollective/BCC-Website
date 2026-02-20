@@ -10,9 +10,9 @@ interface EngagementData {
 function StatRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between py-3 border-b border-white/5 last:border-0">
-      <p className="text-sm text-off-white/70">{label}</p>
+      <p className="text-sm text-white/50">{label}</p>
       <p
-        className="text-sm text-electric-green font-bold"
+        className="text-sm text-off-white font-bold tabular-nums"
         style={{ fontFamily: "var(--font-mono)" }}
       >
         {value}
