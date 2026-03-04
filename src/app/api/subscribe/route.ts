@@ -5,6 +5,15 @@ import crypto from "crypto";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/** Strip non-digits and ensure E.164 format (+1 prefix for US numbers) */
+function formatPhoneE164(raw: string): string {
+  const digits = raw.replace(/\D/g, "");
+  if (digits.startsWith("1") && digits.length === 11) return `+${digits}`;
+  if (digits.length === 10) return `+1${digits}`;
+  // Already has country code or non-US — prefix with + if missing
+  return digits.startsWith("+") ? digits : `+${digits}`;
+}
+
 function initMailchimp() {
   if (!process.env.MAILCHIMP_API_KEY || !process.env.MAILCHIMP_SERVER_PREFIX) {
     throw new Error("MAILCHIMP_API_KEY and MAILCHIMP_SERVER_PREFIX are required");
@@ -56,7 +65,7 @@ export async function POST(request: NextRequest) {
       status: "subscribed",
       merge_fields: {
         FNAME: typeof firstName === "string" ? firstName.trim() : "",
-        SMSPHONE: typeof phone === "string" ? phone.trim() : "",
+        SMSPHONE: typeof phone === "string" && phone.trim() ? formatPhoneE164(phone.trim()) : "",
         SOURCE: source,
         SEGMENT: typeof segment === "string" ? segment : "",
       },
