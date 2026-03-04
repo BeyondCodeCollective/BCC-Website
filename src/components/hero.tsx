@@ -155,6 +155,7 @@ export function Hero() {
               transition={{ delay: 1.6, duration: 0.6 }}
               className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4"
             >
+              {/* Quiz button hidden — re-enable when quiz is ready
               <button
                 onClick={() => openQuiz()}
                 className="bg-electric-green px-8 py-4 font-mono text-sm tracking-wider uppercase text-true-black transition-colors hover:bg-electric-green/80 sm:px-10"
@@ -162,6 +163,7 @@ export function Hero() {
               >
                 {t("getStarted")} &rarr;
               </button>
+              */}
               <button
                 onClick={() => openNewsletter()}
                 className="border border-off-white/30 px-6 py-4 text-center font-mono text-sm tracking-wider uppercase text-off-white/70 transition-all hover:border-off-white hover:text-off-white sm:px-8"
