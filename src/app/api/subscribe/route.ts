@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
       status: "subscribed",
       merge_fields: {
         FNAME: typeof firstName === "string" ? firstName.trim() : "",
-        SMSPHONE: typeof phone === "string" && phone.trim() ? formatPhoneE164(phone.trim()) : "",
+        PHONE: typeof phone === "string" && phone.trim() ? formatPhoneE164(phone.trim()) : "",
         SOURCE: source,
         SEGMENT: typeof segment === "string" ? segment : "",
       },
