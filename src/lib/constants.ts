@@ -37,7 +37,7 @@ export const INITIATIVES = [
     title: "The Forge",
     description:
       "Place-based hubs blending tech education, workforce development, and community engagement for learners of all ages — from K-12 to adults looking to upskill or pivot into tech careers.",
-    contact: "partnership@wearebcc.org",
+    contact: "partnerships@wearebcc.org",
     quizUrl: "https://bcc-guidance-quiz.vercel.app/",
   },
   {
@@ -84,12 +84,12 @@ export const AUDIENCE_SEGMENTS = [
 
 export const CONTACT = {
   marketing: "marketing@wearebcc.org",
-  partnerships: "partnership@wearebcc.org",
+  partnerships: "partnerships@wearebcc.org",
 } as const;
 
 export const RESOURCES = [
   {
-    title: "BCC One-Pager",
+    title: "Beyond Code Collective One-Pager",
     description:
       "An overview of Beyond Code Collective — mission, initiatives, and how to get involved.",
     type: "PDF" as const,

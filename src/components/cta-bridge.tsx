@@ -72,7 +72,7 @@ export function CTABridge() {
           className="mt-14 text-center"
         >
           <a
-            href="mailto:partnership@wearebcc.org"
+            href="mailto:partnerships@wearebcc.org"
             className="inline-block bg-electric-green px-10 py-4 font-mono text-sm tracking-wider uppercase text-true-black transition-colors hover:bg-electric-green/80"
             style={{ fontFamily: "var(--font-mono)" }}
           >
@@ -82,7 +82,7 @@ export function CTABridge() {
             className="mt-4 text-off-white/60 font-mono text-xs tracking-wider"
             style={{ fontFamily: "var(--font-mono)" }}
           >
-            partnership@wearebcc.org
+            partnerships@wearebcc.org
           </p>
         </motion.div>
       </div>

@@ -57,7 +57,7 @@ export function Footer() {
             </p>
             <div className="mt-3 flex gap-4">
               <a
-                href="https://www.instagram.com/wearebcc/"
+                href="https://www.instagram.com/beyondcodecollective"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-off-white/70 transition-colors hover:text-off-white"

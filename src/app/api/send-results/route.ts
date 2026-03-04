@@ -1,13 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
+import mailchimpMarketing from "@mailchimp/mailchimp_marketing";
 import { Resend } from "resend";
+import crypto from "crypto";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function initMarketing() {
+  if (!process.env.MAILCHIMP_API_KEY || !process.env.MAILCHIMP_SERVER_PREFIX) {
+    throw new Error("MAILCHIMP_API_KEY and MAILCHIMP_SERVER_PREFIX are required");
+  }
+  mailchimpMarketing.setConfig({
+    apiKey: process.env.MAILCHIMP_API_KEY,
+    server: process.env.MAILCHIMP_SERVER_PREFIX,
+  });
+}
 
 function getResend() {
   if (!process.env.RESEND_API_KEY) {
     throw new Error("RESEND_API_KEY is not configured");
   }
   return new Resend(process.env.RESEND_API_KEY);
+}
+
+function subscriberHash(email: string): string {
+  return crypto.createHash("md5").update(email).digest("hex");
 }
 
 interface ResultsEmailData {
@@ -81,7 +97,7 @@ function buildResultsEmail(data: ResultsEmailData): { subject: string; html: str
 <tr><td style="background-color:#1D59FF;padding:24px 32px;">
   <span style="color:rgba(255,253,247,0.8);font-size:11px;font-weight:bold;letter-spacing:1px;font-family:'Courier New',monospace;">${labels.roleLabel}</span>
   <h2 style="color:#FFFDF7;font-size:22px;font-weight:bold;margin:8px 0 4px;">${data.role}</h2>
-  <p style="color:rgba(255,253,247,0.9);font-size:16px;margin:0;">$${data.salary.mid.toLocaleString()}${isES ? "/a\u00f1o promedio" : "/year average"}</p>
+  <p style="color:rgba(255,253,247,0.9);font-size:16px;margin:0;">$${data.salary.mid.toLocaleString()}${isES ? "/año promedio" : "/year average"}</p>
 </td></tr>
 
 <!-- Salary Range -->
@@ -140,22 +156,23 @@ export async function POST(request: NextRequest) {
     }
 
     const cleanEmail = email.trim().toLowerCase();
-    const resend = getResend();
 
-    // Add to audience (fire-and-forget pattern from /api/subscribe)
-    await resend.contacts
-      .create({
-        email: cleanEmail,
-        audienceId: process.env.RESEND_AUDIENCE_ID!,
-        unsubscribed: false,
-        firstName: "",
-        lastName: "",
-      })
-      .catch(() => {
-        /* already exists or audience error — non-blocking */
+    // Add to Mailchimp audience (fire-and-forget)
+    try {
+      initMarketing();
+      const listId = process.env.MAILCHIMP_AUDIENCE_ID!;
+      await mailchimpMarketing.lists.setListMember(listId, subscriberHash(cleanEmail), {
+        email_address: cleanEmail,
+        status: "subscribed",
+        merge_fields: {
+          SOURCE: "quiz-results",
+        },
       });
+    } catch {
+      // Non-blocking — contact may already exist
+    }
 
-    // Build and send the results email
+    // Build and send the results email via Resend
     const { subject, html } = buildResultsEmail({
       email: cleanEmail,
       locale: locale === "es" ? "es" : "en",
@@ -171,10 +188,10 @@ export async function POST(request: NextRequest) {
     if (!process.env.RESEND_FROM_EMAIL) {
       throw new Error("RESEND_FROM_EMAIL is not configured");
     }
-    const fromEmail = process.env.RESEND_FROM_EMAIL;
 
+    const resend = getResend();
     const { error } = await resend.emails.send({
-      from: fromEmail,
+      from: process.env.RESEND_FROM_EMAIL,
       to: cleanEmail,
       subject,
       html,

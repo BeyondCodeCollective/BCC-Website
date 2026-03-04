@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import mailchimp from "@mailchimp/mailchimp_marketing";
+import crypto from "crypto";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function getResend() {
-  if (!process.env.RESEND_API_KEY) {
-    throw new Error("RESEND_API_KEY is not configured");
+function initMailchimp() {
+  if (!process.env.MAILCHIMP_API_KEY || !process.env.MAILCHIMP_SERVER_PREFIX) {
+    throw new Error("MAILCHIMP_API_KEY and MAILCHIMP_SERVER_PREFIX are required");
   }
-  return new Resend(process.env.RESEND_API_KEY);
+  mailchimp.setConfig({
+    apiKey: process.env.MAILCHIMP_API_KEY,
+    server: process.env.MAILCHIMP_SERVER_PREFIX,
+  });
+}
+
+function subscriberHash(email: string): string {
+  return crypto.createHash("md5").update(email).digest("hex");
 }
 
 export async function POST(request: NextRequest) {
@@ -38,30 +46,34 @@ export async function POST(request: NextRequest) {
 
     const cleanEmail = email.trim().toLowerCase();
 
-    const resend = getResend();
+    initMailchimp();
 
-    const { error } = await resend.contacts.create({
-      email: cleanEmail,
-      audienceId: process.env.RESEND_AUDIENCE_ID!,
-      unsubscribed: false,
-      firstName: typeof firstName === "string" ? firstName.trim() : "",
-      lastName: "",
+    const listId = process.env.MAILCHIMP_AUDIENCE_ID!;
+
+    // Use setListMember (PUT) — creates or updates, never errors on duplicates
+    await mailchimp.lists.setListMember(listId, subscriberHash(cleanEmail), {
+      email_address: cleanEmail,
+      status: "subscribed",
+      merge_fields: {
+        FNAME: typeof firstName === "string" ? firstName.trim() : "",
+        SMSPHONE: typeof phone === "string" ? phone.trim() : "",
+        SOURCE: source,
+        SEGMENT: typeof segment === "string" ? segment : "",
+      },
     });
 
-    if (error) {
-      // "already exists" is not a real error — they're already subscribed
-      if (error.message?.toLowerCase().includes("already exists")) {
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error: unknown) {
+    const mailchimpError = error as { status?: number; response?: { body?: { detail?: string } } };
+
+    // Mailchimp returns 400 for "Member Exists" with different status — treat as success
+    if (mailchimpError.status === 400) {
+      const detail = mailchimpError.response?.body?.detail || "";
+      if (detail.toLowerCase().includes("member exists")) {
         return NextResponse.json({ success: true }, { status: 200 });
       }
-      console.error("Resend error:", error);
-      return NextResponse.json(
-        { error: "Failed to subscribe. Please try again." },
-        { status: 500 }
-      );
     }
 
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch (error) {
     console.error("Error processing subscription:", error);
     return NextResponse.json(
       { error: "Failed to process subscription. Please try again." },
