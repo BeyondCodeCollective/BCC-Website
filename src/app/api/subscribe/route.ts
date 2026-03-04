@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import mailchimp from "@mailchimp/mailchimp_marketing";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const mailchimp = require("@mailchimp/mailchimp_marketing");
 import crypto from "crypto";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -74,7 +75,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.error("Error processing subscription:", error);
+    console.error("Mailchimp subscribe error:", JSON.stringify(error, null, 2));
     return NextResponse.json(
       { error: "Failed to process subscription. Please try again." },
       { status: 500 }

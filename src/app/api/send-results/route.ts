@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import mailchimpMarketing from "@mailchimp/mailchimp_marketing";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const mailchimpMarketing = require("@mailchimp/mailchimp_marketing");
 import { Resend } from "resend";
 import crypto from "crypto";
 
