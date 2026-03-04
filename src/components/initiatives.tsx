@@ -131,6 +131,7 @@ export function Initiatives() {
                       {t("learnMore")}
                       <span aria-hidden="true">&rarr;</span>
                     </a>
+                    {/* Quiz button hidden — re-enable when quiz is ready
                     {"quizUrl" in initiative && initiative.quizUrl && (
                       <button
                         onClick={() => openQuiz()}
@@ -141,6 +142,7 @@ export function Initiatives() {
                         <span aria-hidden="true">&rarr;</span>
                       </button>
                     )}
+                    */}
                   </div>
                 </div>
               </motion.div>
