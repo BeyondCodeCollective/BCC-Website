@@ -1,11 +1,12 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { SITE, CONTACT } from "@/lib/constants";
 import { Logo } from "./ui/logo";
 
 export function Footer() {
   const t = useTranslations("footer");
+  const locale = useLocale();
 
   return (
     <footer className="bg-true-black px-6 py-16 lg:px-8 lg:py-20">
@@ -75,13 +76,13 @@ export function Footer() {
           </p>
           <div className="flex gap-6">
             <a
-              href="/privacy"
+              href={`/${locale}/privacy`}
               className="text-xs text-off-white/60 transition-colors hover:text-off-white"
             >
               {t("privacyPolicy")}
             </a>
             <a
-              href="/terms"
+              href={`/${locale}/terms`}
               className="text-xs text-off-white/60 transition-colors hover:text-off-white"
             >
               {t("termsOfUse")}
