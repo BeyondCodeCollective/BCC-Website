@@ -24,9 +24,12 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { firstName, email, phone, segment, source } = body;
 
-    if (!email || typeof email !== "string") {
+    const hasEmail = email && typeof email === "string" && EMAIL_REGEX.test(email.trim());
+    const hasPhone = phone && typeof phone === "string" && phone.trim().length >= 10;
+
+    if (!hasEmail && !hasPhone) {
       return NextResponse.json(
-        { error: "Email is required" },
+        { error: "Email or phone is required" },
         { status: 400 }
       );
     }
@@ -38,14 +41,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!EMAIL_REGEX.test(email.trim())) {
-      return NextResponse.json(
-        { error: "Invalid email format" },
-        { status: 400 }
-      );
-    }
-
-    const cleanEmail = email.trim().toLowerCase();
+    // Mailchimp requires an email — use a placeholder for phone-only leads
+    const cleanEmail = hasEmail
+      ? email.trim().toLowerCase()
+      : `phone-${phone.trim().replace(/\D/g, "")}@placeholder.wearebcc.org`;
 
     initMailchimp();
 

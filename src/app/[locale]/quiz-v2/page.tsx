@@ -1188,13 +1188,15 @@ export default function GuidanceQuiz() {
     setContactInfo(contact);
     setScreen("quiz");
     trackEvent(sessionId, QV, "lead_captured", { lead_type: contact.type }, locale);
-    if (contact.type === "email") {
-      fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: contact.value, source: "quiz-lead-capture" }),
-      }).catch(() => {});
-    }
+    fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: contact.type === "email" ? contact.value : "",
+        phone: contact.type === "phone" ? contact.value : "",
+        source: "quiz-lead-capture",
+      }),
+    }).catch(() => {});
   };
 
   const handleContactSkip = () => {
