@@ -99,7 +99,7 @@ export const RESOURCES = [
     description:
       "An overview of Beyond Code Collective — mission, initiatives, and how to get involved.",
     type: "PDF" as const,
-    href: "/resources/bcc-one-pager.pdf",
+    href: "/resources/Beyond-Code-Collective-One-Pager.pdf",
   },
   {
     title: "The Forge Overview",
