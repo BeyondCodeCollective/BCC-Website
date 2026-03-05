@@ -2,9 +2,8 @@
   "hero": {
     "headline1": "TODOS",
     "rotatingWords": ["CONSTRUYEN.", "CRECEN.", "APRENDEN.", "LIDERAN."],
-    "humanInTheLoop": "// EL HUMANO EN EL CENTRO //",
     "tagline": "< BEYOND CODE COLLECTIVE >",
-    "description": "Beyond Code Collective ofrece recursos impulsados por personas para un mundo impulsado por la tecnolog\u00eda. Construyendo equidad intergeneracional en las tecnolog\u00edas de hoy y ma\u00f1ana.",
+    "description": "Beyond Code Collective mantiene al humano en el centro \u2014 ofreciendo recursos impulsados por personas para un mundo impulsado por la tecnolog\u00eda. Construyendo equidad intergeneracional en las tecnolog\u00edas de hoy y ma\u00f1ana.",
     "getStarted": "Toma el Quiz de Carreras",
     "joinNewsletter": "Suscr\u00edbete",
     "ourCommunity": "NUESTRA COMUNIDAD"

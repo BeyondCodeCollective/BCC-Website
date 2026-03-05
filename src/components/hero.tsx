@@ -130,12 +130,6 @@ export function Hero() {
                 className="text-electric-green font-mono text-sm tracking-wider"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
-                {t("humanInTheLoop")}
-              </p>
-              <p
-                className="mt-1 text-off-white/60 font-mono text-xs tracking-wider"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
                 {t("tagline")}
               </p>
             </motion.div>

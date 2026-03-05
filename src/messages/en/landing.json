@@ -2,9 +2,8 @@
   "hero": {
     "headline1": "EVERYONE",
     "rotatingWords": ["BUILDS.", "GROWS.", "LEARNS.", "LEADS."],
-    "humanInTheLoop": "// HUMAN IN THE LOOP //",
     "tagline": "< BEYOND CODE COLLECTIVE >",
-    "description": "Beyond Code Collective provides human-powered resources for a tech-driven world. Building intergenerational equity in the technologies of today and tomorrow.",
+    "description": "Beyond Code Collective keeps the human in the loop — providing human-powered resources for a tech-driven world. Building intergenerational equity in the technologies of today and tomorrow.",
     "getStarted": "Take the Career Quiz",
     "joinNewsletter": "Join Newsletter",
     "ourCommunity": "OUR COMMUNITY"
