@@ -52,7 +52,7 @@ export function Testimonials() {
               {t("subheading")}
             </p>
           </motion.div>
-          <SectionLabel number="03" className="text-grey-3 mt-2" />
+          <SectionLabel number="02" className="text-grey-3 mt-2" />
         </div>
 
         <div className="mt-12">

@@ -43,7 +43,7 @@ export function Initiatives() {
               {t("subheading")}
             </p>
           </motion.div>
-          <SectionLabel number="02" className="text-off-white/70 mt-2" />
+          <SectionLabel number="03" className="text-off-white/70 mt-2" />
         </div>
 
         <motion.p
