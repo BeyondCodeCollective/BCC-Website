@@ -12,11 +12,13 @@ import { GetInvolved } from "@/components/get-involved";
 import { Footer } from "@/components/footer";
 import { QuizProvider } from "@/components/quiz-modal";
 import { NewsletterProvider } from "@/components/newsletter-modal";
+import { PartnershipsProvider } from "@/components/partnerships-modal";
 
 export default function Home() {
   return (
     <QuizProvider>
       <NewsletterProvider>
+      <PartnershipsProvider>
         <Nav />
         <main>
           <Hero />
@@ -31,6 +33,7 @@ export default function Home() {
           <GetInvolved />
         </main>
         <Footer />
+      </PartnershipsProvider>
       </NewsletterProvider>
     </QuizProvider>
   );

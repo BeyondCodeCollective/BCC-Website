@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { EMPLOYER_LOGOS } from "./ui/brand-logos";
+import { usePartnerships } from "./partnerships-modal";
 
 export function CTABridge() {
+  const { openPartnerships } = usePartnerships();
   const t = useTranslations("ctaBridge");
 
   return (
@@ -71,13 +73,13 @@ export function CTABridge() {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="mt-14 text-center"
         >
-          <a
-            href="mailto:partnerships@wearebcc.org"
-            className="inline-block bg-electric-green px-10 py-4 font-mono text-sm tracking-wider uppercase text-true-black transition-colors hover:bg-electric-green/80"
+          <button
+            onClick={() => openPartnerships()}
+            className="inline-block bg-electric-green px-10 py-4 font-mono text-sm tracking-wider uppercase text-true-black transition-colors hover:bg-electric-green/80 cursor-pointer"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             {t("partnerWithUs")}
-          </a>
+          </button>
           <p
             className="mt-4 text-off-white/60 font-mono text-xs tracking-wider"
             style={{ fontFamily: "var(--font-mono)" }}

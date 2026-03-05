@@ -35,6 +35,17 @@
     "wellBeInTouch": "We'll be in touch. The future is all of ours.",
     "somethingWentWrong": "Something went wrong. Please try again."
   },
+  "partnerships": {
+    "label": "[ PARTNERSHIPS ]",
+    "headline1": "LET'S BUILD",
+    "headline2": "TOGETHER.",
+    "description": "Interested in partnering with Beyond Code Collective? Share your info and our team will reach out.",
+    "close": "CLOSE",
+    "thanks": "THANK YOU.",
+    "wellReachOut": "Our partnerships team will be in touch soon.",
+    "submitting": "Submitting...",
+    "connect": "Connect With Us \u2192"
+  },
   "segments": {
     "student": "Student (7-17)",
     "learner": "Learner (18+)",

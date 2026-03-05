@@ -35,6 +35,17 @@
     "wellBeInTouch": "Estaremos en contacto. El futuro es de todos.",
     "somethingWentWrong": "Algo sali\u00f3 mal. Por favor, int\u00e9ntalo de nuevo."
   },
+  "partnerships": {
+    "label": "[ ALIANZAS ]",
+    "headline1": "CONSTRUYAMOS",
+    "headline2": "JUNTOS.",
+    "description": "\u00bfInteresado en asociarte con Beyond Code Collective? Comparte tu informaci\u00f3n y nuestro equipo se pondr\u00e1 en contacto.",
+    "close": "CERRAR",
+    "thanks": "\u00a1GRACIAS!",
+    "wellReachOut": "Nuestro equipo de alianzas se pondr\u00e1 en contacto pronto.",
+    "submitting": "Enviando...",
+    "connect": "Con\u00e9ctate Con Nosotros \u2192"
+  },
   "segments": {
     "student": "Estudiante (7-17)",
     "learner": "Aprendiz (18+)",

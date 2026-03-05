@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { SectionLabel } from "./ui/section-label";
-import { INITIATIVES } from "@/lib/constants";
-import { useQuiz } from "./quiz-modal";
+import { usePartnerships } from "./partnerships-modal";
 
 const INITIATIVE_IMAGES = [
   "/images/initiatives/forge.jpg",
@@ -16,7 +15,7 @@ const INITIATIVE_IMAGES = [
 const INITIATIVE_KEYS = ["forge", "catalysts", "afterTheGame"] as const;
 
 export function Initiatives() {
-  const { openQuiz } = useQuiz();
+  const { openPartnerships } = usePartnerships();
   const t = useTranslations("initiatives");
 
   return (
@@ -59,7 +58,6 @@ export function Initiatives() {
 
         <div className="mt-16 space-y-16 lg:space-y-24">
           {INITIATIVE_KEYS.map((key, i) => {
-            const initiative = INITIATIVES[i];
             const isReversed = i % 2 !== 0;
 
             // Read tags array from translations
@@ -121,27 +119,15 @@ export function Initiatives() {
                     ))}
                   </div>
 
-                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <a
-                      href={`mailto:${initiative.contact}`}
+                  <div className="mt-8">
+                    <button
+                      onClick={() => openPartnerships()}
                       className="inline-flex items-center justify-center gap-2 bg-electric-green px-6 py-3 font-mono text-xs tracking-wider uppercase text-true-black transition-colors hover:bg-electric-green/80"
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
                       {t("learnMore")}
                       <span aria-hidden="true">&rarr;</span>
-                    </a>
-                    {/* Quiz button hidden — re-enable when quiz is ready
-                    {"quizUrl" in initiative && initiative.quizUrl && (
-                      <button
-                        onClick={() => openQuiz()}
-                        className="inline-flex items-center justify-center gap-2 border-2 border-electric-green px-6 py-3 font-mono text-xs tracking-wider uppercase text-electric-green transition-colors hover:bg-electric-green hover:text-true-black"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        {t("takeCareerQuiz")}
-                        <span aria-hidden="true">&rarr;</span>
-                      </button>
-                    )}
-                    */}
+                    </button>
                   </div>
                 </div>
               </motion.div>
