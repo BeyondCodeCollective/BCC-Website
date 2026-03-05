@@ -89,7 +89,7 @@ export const AUDIENCE_SEGMENTS = [
 ] as const;
 
 export const CONTACT = {
-  marketing: "marketing@wearebcc.org",
+  info: "info@wearebcc.org",
   partnerships: "partnerships@wearebcc.org",
 } as const;
 
