@@ -29,8 +29,8 @@ export async function generateMetadata({
       ? "Beyond Code Collective — El Futuro De La Tecnología Comienza Aquí"
       : "Beyond Code Collective — The Future Of Tech Starts Here",
     description: isEs
-      ? "Beyond Code Collective ofrece recursos impulsados por personas para un mundo impulsado por la tecnología. Construyendo equidad intergeneracional en las tecnologías de hoy y mañana."
-      : "Beyond Code Collective provides human-powered resources for a tech-driven world. Building intergenerational equity in the technologies of today and tomorrow.",
+      ? "Beyond Code Collective ofrece recursos impulsados por personas para un mundo impulsado por la tecnología. Construyendo acceso intergeneracional a las tecnologías de hoy y mañana."
+      : "Beyond Code Collective provides human-powered resources for a tech-driven world. Building intergenerational access to the technologies of today and tomorrow.",
     keywords: isEs
       ? [
           "Beyond Code Collective",
@@ -38,7 +38,7 @@ export async function generateMetadata({
           "educación tecnológica",
           "desarrollo laboral",
           "alfabetización en IA",
-          "equidad intergeneracional",
+          "acceso intergeneracional",
         ]
       : [
           "Beyond Code Collective",
@@ -46,7 +46,7 @@ export async function generateMetadata({
           "tech education",
           "workforce development",
           "AI literacy",
-          "intergenerational equity",
+          "intergenerational access",
         ],
     openGraph: {
       title: isEs

@@ -102,7 +102,7 @@ export default function PrivacyPolicyPage() {
                   notes)
                 </li>
                 <li>
-                  Demographic information to measure equity (race/ethnicity, gender identity,
+                  Demographic information to measure impact (race/ethnicity, gender identity,
                   pronouns) — optional
                 </li>
                 <li>

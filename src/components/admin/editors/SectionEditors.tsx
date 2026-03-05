@@ -41,7 +41,7 @@ export function AboutEditor({ value, onChange }: { value: V; onChange: OnChange 
       <KeyedGroupEditor
         label="Pillars"
         keys={[
-          { key: "intergenerationalEquity", displayName: "Intergenerational Equity" },
+          { key: "intergenerationalEquity", displayName: "Intergenerational" },
           { key: "allTechnologies", displayName: "All Technologies" },
           { key: "todayAndTomorrow", displayName: "Today & Tomorrow" },
         ]}
