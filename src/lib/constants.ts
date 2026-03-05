@@ -30,6 +30,11 @@ export const PILLARS = [
     description:
       "Programming that keeps communities relevant now and ready for what's next, as the workforce changes in real time.",
   },
+  {
+    title: "Adaptive Programming",
+    description:
+      "Curriculum that evolves with the industry — adjusting content, delivery, and outcomes to match where learners and employers are headed.",
+  },
 ] as const;
 
 export const INITIATIVES = [

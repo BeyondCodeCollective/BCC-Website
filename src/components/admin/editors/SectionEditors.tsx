@@ -44,6 +44,7 @@ export function AboutEditor({ value, onChange }: { value: V; onChange: OnChange 
           { key: "intergenerationalOpportunity", displayName: "Intergenerational Opportunity" },
           { key: "allTechnologies", displayName: "All Technologies" },
           { key: "todayAndTomorrow", displayName: "Today & Tomorrow" },
+          { key: "adaptiveProgramming", displayName: "Adaptive Programming" },
         ]}
         fields={[
           { key: "title", label: "Title", type: "string" },

@@ -24,6 +24,10 @@
       "todayAndTomorrow": {
         "title": "Hoy y Ma\u00f1ana",
         "description": "Programas que mantienen a las comunidades relevantes ahora y preparadas para lo que viene, mientras la fuerza laboral cambia en tiempo real."
+      },
+      "adaptiveProgramming": {
+        "title": "Programaci\u00f3n Adaptativa",
+        "description": "Curr\u00edculo que evoluciona con la industria \u2014 ajustando contenido, entrega y resultados para coincidir con hacia d\u00f3nde se dirigen los aprendices y los empleadores."
       }
     }
   },
