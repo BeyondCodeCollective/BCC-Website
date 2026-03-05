@@ -105,8 +105,9 @@ export const RESOURCES = [
     title: "The Forge Overview",
     description:
       "Details on our place-based tech hubs blending education, workforce development, and community engagement.",
-    type: "PDF" as const,
-    href: "/resources/the-forge-overview.pdf",
+    type: "LINK" as const,
+    href: "https://www.instagram.com/p/DPMtj0Wkhxq/",
+    external: true as const,
   },
   {
     title: "Brand Flipbook",
