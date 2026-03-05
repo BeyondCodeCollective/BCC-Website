@@ -53,6 +53,12 @@ export const INITIATIVES = [
     contact: "marketing@wearebcc.org",
     learnMoreUrl: "https://www.youtube.com/watch?v=VroOSToSNx8",
   },
+  {
+    title: "After The Game",
+    description:
+      "A national, cohort-based workforce program for transitioning or recently retired professional and NCAA student-athletes. Bridges the digital skill divide with technical leads teaching live classes, plus wraparound support from corporate readiness to job placement.",
+    contact: "partnerships@wearebcc.org",
+  },
 ] as const;
 
 export const PRESS_FEATURES = [

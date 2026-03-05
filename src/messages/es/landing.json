@@ -68,7 +68,7 @@
         "label": "De Empleadores Planean Capacitar Equipos en Tecnolog\u00edas Emergentes"
       },
       {
-        "value": "3",
+        "value": "4",
         "suffix": "+",
         "label": "Iniciativas Construyendo Caminos hacia Carreras de Calidad"
       },
@@ -106,6 +106,11 @@
         "title": "Code Along",
         "description": "Una academia de programaci\u00f3n en video gratuita con tutoriales paso a paso, haciendo la educaci\u00f3n tecnol\u00f3gica accesible para todos a trav\u00e9s del aprendizaje digital.",
         "tags": ["Todas las Edades", "Gratis", "Tutoriales en Video"]
+      },
+      "afterTheGame": {
+        "title": "After The Game",
+        "description": "Un programa nacional de fuerza laboral basado en cohortes para atletas profesionales y universitarios NCAA en transición o recientemente retirados. Cierra la brecha de habilidades digitales con instructores técnicos en clases en vivo, más apoyo integral desde preparación corporativa hasta colocación laboral.",
+        "tags": ["Atletas", "Basado en Cohortes", "Transición de Carrera"]
       }
     }
   },

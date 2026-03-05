@@ -11,9 +11,10 @@ const INITIATIVE_IMAGES = [
   "/images/initiatives/forge.jpg",
   "/images/initiatives/catalysts.jpg",
   "/images/initiatives/code-along.jpg",
+  "/images/initiatives/after-the-game.jpg",
 ];
 
-const INITIATIVE_KEYS = ["forge", "catalysts", "codeAlong"] as const;
+const INITIATIVE_KEYS = ["forge", "catalysts", "codeAlong", "afterTheGame"] as const;
 
 export function Initiatives() {
   const { openQuiz } = useQuiz();
