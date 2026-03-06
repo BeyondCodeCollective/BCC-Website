@@ -51,7 +51,14 @@ export function Founder() {
             className="flex flex-col justify-center"
           >
             <h2 className="font-heading text-[clamp(2rem,5vw,4rem)] leading-[0.9] text-off-white">
-              Cristina Mancini
+              <a
+                href="https://www.linkedin.com/in/crisbmancini/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-electric-green"
+              >
+                Cristina Mancini
+              </a>
             </h2>
             <p
               className="mt-2 font-mono text-xs tracking-wider text-off-white/60"
