@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -86,6 +87,7 @@ export default async function LocaleLayout({
           {children}
           <Analytics />
         </NextIntlClientProvider>
+        <GoogleAnalytics gaId="G-KJF6CKFSTP" />
       </body>
     </html>
   );
