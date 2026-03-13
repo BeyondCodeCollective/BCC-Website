@@ -46,6 +46,11 @@
     "submitting": "Enviando...",
     "connect": "Con\u00e9ctate Con Nosotros \u2192"
   },
+  "banner": {
+    "title": "AFTER THE GAME",
+    "description": "Una nueva iniciativa para atletas en transici\u00f3n.",
+    "cta": "Conoce m\u00e1s"
+  },
   "segments": {
     "student": "Estudiante (7-17)",
     "learner": "Aprendiz (18+)",

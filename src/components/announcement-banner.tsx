@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
 export function AnnouncementBanner() {
+  const t = useTranslations("banner");
   const [dismissed, setDismissed] = useState(false);
 
   if (dismissed) return null;
@@ -32,12 +34,12 @@ export function AnnouncementBanner() {
               className="font-mono text-xs tracking-wider text-off-white sm:text-sm"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              <strong>AFTER THE GAME</strong>
+              <strong>{t("title")}</strong>
               <span className="hidden sm:inline">
                 {" "}
-                — A new initiative for transitioning athletes.
+                — {t("description")}
               </span>{" "}
-              <span className="underline underline-offset-2">Learn more</span>
+              <span className="underline underline-offset-2">{t("cta")}</span>
             </span>
           </Link>
           <button

@@ -46,6 +46,11 @@
     "submitting": "Submitting...",
     "connect": "Connect With Us \u2192"
   },
+  "banner": {
+    "title": "AFTER THE GAME",
+    "description": "A new initiative for transitioning athletes.",
+    "cta": "Learn more"
+  },
   "segments": {
     "student": "Student (7-17)",
     "learner": "Learner (18+)",
