@@ -4,8 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 
 export default function AfterTheGame() {
+  const t = useTranslations("atg");
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -36,11 +38,22 @@ export default function AfterTheGame() {
       if (!response.ok) throw new Error(data.error || "Failed to subscribe");
       setSubmitted(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      setError(err instanceof Error ? err.message : t("error"));
     } finally {
       setLoading(false);
     }
   };
+
+  // Read features array from translations
+  const features: { title: string; description: string }[] = [];
+  let idx = 0;
+  while (t.has(`features.${idx}.title`)) {
+    features.push({
+      title: t(`features.${idx}.title`),
+      description: t(`features.${idx}.description`),
+    });
+    idx++;
+  }
 
   return (
     <div className="min-h-screen bg-true-black">
@@ -52,7 +65,7 @@ export default function AfterTheGame() {
           style={{ fontFamily: "var(--font-mono)" }}
         >
           <ArrowLeft size={14} weight="bold" />
-          WEAREBCC.ORG
+          {t("back")}
         </a>
       </div>
 
@@ -71,7 +84,7 @@ export default function AfterTheGame() {
                 className="font-mono text-xs tracking-wider text-electric-green"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
-                NEXT COHORT: SUMMER 2026
+                {t("nextCohort")}
               </span>
             </div>
             <Image
@@ -91,7 +104,7 @@ export default function AfterTheGame() {
             className="mx-auto mt-4 font-mono text-xs tracking-wider text-electric-green"
             style={{ fontFamily: "var(--font-mono)" }}
           >
-            A BEYOND CODE COLLECTIVE INITIATIVE
+            {t("initiative")}
           </motion.p>
 
           <motion.h1
@@ -100,9 +113,9 @@ export default function AfterTheGame() {
             transition={{ delay: 0.25, duration: 0.6 }}
             className="mx-auto mt-8 max-w-3xl font-heading text-[clamp(2rem,5vw,3.5rem)] leading-[0.9] text-off-white"
           >
-            YOUR CAREER AFTER
+            {t("headline1")}
             <br />
-            <span className="text-electric-green">THE FINAL WHISTLE</span>
+            <span className="text-electric-green">{t("headline2")}</span>
           </motion.h1>
 
           <motion.p
@@ -111,10 +124,7 @@ export default function AfterTheGame() {
             transition={{ delay: 0.35, duration: 0.6 }}
             className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-off-white/70 sm:text-lg"
           >
-            A national, cohort-based workforce program for transitioning or
-            recently-retired professional and NCAA student-athletes. Explicitly
-            designed for those who are not long-term earners and need structured
-            support to design and enter a second career.
+            {t("description")}
           </motion.p>
 
           <motion.div
@@ -128,7 +138,7 @@ export default function AfterTheGame() {
               className="bg-cobalt px-8 py-4 font-mono text-sm tracking-wider uppercase text-off-white transition-colors hover:bg-cobalt/80"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              JOIN THE WAITLIST &rarr;
+              {t("joinWaitlist")} &rarr;
             </a>
           </motion.div>
         </div>
@@ -148,17 +158,15 @@ export default function AfterTheGame() {
               className="font-mono text-xs tracking-wider text-electric-green"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              HEAR FROM OUR COMMUNITY
+              {t("videoLabel")}
             </p>
             <h2 className="mt-4 font-heading text-[clamp(1.75rem,4vw,2.5rem)] leading-[0.9] text-off-white">
-              REAL STORIES,
+              {t("videoHeadline1")}
               <br />
-              REAL IMPACT
+              {t("videoHeadline2")}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-off-white/60">
-              Hear directly from athletes who are building their next chapter
-              through After The Game. The transition doesn&apos;t have to be a
-              solo journey.
+              {t("videoDescription")}
             </p>
           </div>
           <div className="relative mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden bg-charcoal">
@@ -187,48 +195,17 @@ export default function AfterTheGame() {
               className="font-mono text-xs tracking-wider text-electric-green"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              WHAT TO EXPECT
+              {t("expectLabel")}
             </p>
             <h2 className="mt-4 font-heading text-[clamp(1.75rem,4vw,3rem)] leading-[0.9] text-off-white">
-              BUILT FOR ATHLETES,
+              {t("expectHeadline1")}
               <br />
-              NOT THE TECH INDUSTRY
+              {t("expectHeadline2")}
             </h2>
           </motion.div>
 
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "Cohort-Based",
-                description:
-                  "Learn alongside fellow athletes who understand the transition. No solo online courses — real accountability, real peers.",
-              },
-              {
-                title: "Career Design",
-                description:
-                  "Not just job skills — a structured path to discover, plan, and launch your second career with wraparound support.",
-              },
-              {
-                title: "Live Instruction",
-                description:
-                  "Technical leads teaching live classes, not pre-recorded videos. Real questions, real feedback, real progress.",
-              },
-              {
-                title: "Job Placement",
-                description:
-                  "From corporate readiness to interview prep to direct employer connections. We don't stop at the certificate.",
-              },
-              {
-                title: "Digital Skills",
-                description:
-                  "Bridge the digital skill divide with practical tech training — from digital fluency to data, automation, and AI.",
-              },
-              {
-                title: "National Reach",
-                description:
-                  "Designed to serve athletes across the country. Your city, your schedule, your next chapter.",
-              },
-            ].map((item, i) => (
+            {features.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -265,10 +242,10 @@ export default function AfterTheGame() {
             {submitted ? (
               <div className="bg-electric-green p-8">
                 <p className="font-heading text-3xl text-true-black">
-                  YOU&apos;RE IN
+                  {t("successTitle")}
                 </p>
                 <p className="mt-2 text-true-black/70">
-                  We&apos;ll be in touch when enrollment opens.
+                  {t("successMessage")}
                 </p>
               </div>
             ) : (
@@ -277,16 +254,15 @@ export default function AfterTheGame() {
                   className="font-mono text-xs tracking-wider text-cobalt"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
-                  SUMMER 2026 WAITLIST
+                  {t("formLabel")}
                 </p>
                 <h2 className="mt-4 font-heading text-[clamp(1.75rem,4vw,2.5rem)] leading-[0.9] text-off-white">
-                  JOIN THE NEXT
+                  {t("formHeadline1")}
                   <br />
-                  <span className="text-cobalt">COHORT</span>
+                  <span className="text-cobalt">{t("formHeadline2")}</span>
                 </h2>
                 <p className="mt-4 text-sm text-off-white/60">
-                  The next cohort starts summer 2026. Sign up now to reserve
-                  your spot and get updates on enrollment.
+                  {t("formDescription")}
                 </p>
 
                 <form
@@ -296,7 +272,7 @@ export default function AfterTheGame() {
                   <input
                     type="text"
                     required
-                    placeholder="First Name"
+                    placeholder={t("firstName")}
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     disabled={loading}
@@ -305,7 +281,7 @@ export default function AfterTheGame() {
                   <input
                     type="email"
                     required
-                    placeholder="Email"
+                    placeholder={t("email")}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={loading}
@@ -313,7 +289,7 @@ export default function AfterTheGame() {
                   />
                   <input
                     type="tel"
-                    placeholder="Phone (optional)"
+                    placeholder={t("phone")}
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     disabled={loading}
@@ -326,16 +302,16 @@ export default function AfterTheGame() {
                     className="w-full border border-off-white/20 bg-off-white/5 px-4 py-3 text-off-white focus:border-cobalt focus:outline-none appearance-none disabled:opacity-50"
                   >
                     <option value="" className="bg-true-black">
-                      I want to... (select one)
+                      {t("interestPlaceholder")}
                     </option>
                     <option value="Join" className="bg-true-black">
-                      Join the program
+                      {t("interestJoin")}
                     </option>
                     <option value="Volunteer" className="bg-true-black">
-                      Volunteer
+                      {t("interestVolunteer")}
                     </option>
                     <option value="Support" className="bg-true-black">
-                      Support / Sponsor
+                      {t("interestSupport")}
                     </option>
                   </select>
                   {error && (
@@ -347,7 +323,7 @@ export default function AfterTheGame() {
                     className="w-full bg-cobalt px-6 py-3 font-mono text-sm tracking-wider uppercase text-off-white transition-colors hover:bg-cobalt/80 disabled:cursor-not-allowed disabled:opacity-50"
                     style={{ fontFamily: "var(--font-mono)" }}
                   >
-                    {loading ? "JOINING..." : "JOIN THE WAITLIST"}
+                    {loading ? t("submitting") : t("submit")}
                   </button>
                 </form>
               </>
@@ -364,7 +340,7 @@ export default function AfterTheGame() {
             className="font-mono text-xs tracking-wider text-off-white/40 transition-colors hover:text-off-white"
             style={{ fontFamily: "var(--font-mono)" }}
           >
-            WEAREBCC.ORG
+            {t("back")}
           </a>
           <p
             className="font-mono text-xs tracking-wider text-off-white/30"
