@@ -105,10 +105,10 @@ export default function LinksPage() {
         <p className="mt-2 text-lg leading-relaxed text-off-white">
           Questions?{" "}
           <a
-            href="mailto:partners@wearebcc.org"
+            href="mailto:partnerships@wearebcc.org"
             className="underline underline-offset-4 hover:text-electric-green"
           >
-            partners@wearebcc.org
+            partnerships@wearebcc.org
           </a>
         </p>
 

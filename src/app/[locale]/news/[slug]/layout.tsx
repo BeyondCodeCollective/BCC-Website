@@ -22,6 +22,13 @@ export async function generateMetadata({
     : `${SITE_URL}${post.image}`;
 
   return {
+    alternates: {
+      canonical: `${SITE_URL}/${locale}/news/${slug}`,
+      languages: {
+        en: `${SITE_URL}/en/news/${slug}`,
+        es: `${SITE_URL}/es/news/${slug}`,
+      },
+    },
     title: `${post.title} | Beyond Code Collective`,
     description: post.excerpt,
     openGraph: {

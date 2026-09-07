@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo";
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
@@ -15,6 +17,15 @@ import { Footer } from "@/components/footer";
 import { QuizProvider } from "@/components/quiz-modal";
 import { NewsletterProvider } from "@/components/newsletter-modal";
 import { PartnershipsProvider } from "@/components/partnerships-modal";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return { alternates: pageAlternates(locale, "") };
+}
 
 export default function Home() {
   return (

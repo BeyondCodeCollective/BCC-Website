@@ -83,13 +83,6 @@ export async function generateMetadata({
         : "Beyond Code Collective provides human-powered resources for a tech-driven world.",
       images: ["https://www.wearebcc.org/images/community-og-v2.jpg"],
     },
-    alternates: {
-      canonical: `https://www.wearebcc.org/${locale}`,
-      languages: {
-        en: "https://www.wearebcc.org/en",
-        es: "https://www.wearebcc.org/es",
-      },
-    },
   };
 }
 

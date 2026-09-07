@@ -2,12 +2,21 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { NewsletterProvider } from "@/components/newsletter-modal";
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
   title: "Terms of Use — Beyond Code Collective",
   description:
     "Beyond Code Collective Terms of Use. Read our terms governing use of our websites and services.",
-};
+    alternates: pageAlternates(locale, "/terms"),
+  };
+}
 
 export default function TermsOfUsePage() {
   return (

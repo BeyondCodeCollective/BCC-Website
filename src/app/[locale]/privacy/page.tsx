@@ -2,12 +2,21 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { NewsletterProvider } from "@/components/newsletter-modal";
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
   title: "Privacy Notice — Beyond Code Collective",
   description:
     "Beyond Code Collective Privacy Notice. Learn how we collect, use, and protect your personal information.",
-};
+    alternates: pageAlternates(locale, "/privacy"),
+  };
+}
 
 export default function PrivacyNoticePage() {
   return (

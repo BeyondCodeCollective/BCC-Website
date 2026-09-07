@@ -4,20 +4,18 @@ import landing from "@/messages/en/landing.json";
 const BASE = "https://www.wearebcc.org";
 const LOCALES = ["en", "es"] as const;
 
-// Public marketing surfaces only. Gated pages (beyond-overview, decks),
-// unlisted pages (theo-tech, rancho-cordova, links) and app surfaces
-// (admin, dashboard, sandbox) stay out on purpose.
+// Indexable marketing surfaces only. Anything carrying robots noindex
+// (platform, partners, code-along, rancho-cordova, theo-tech, links) stays
+// out: listing a noindex URL in the sitemap just asks Google to crawl a page
+// it is then told to drop. Gated pages and app surfaces stay out too.
 const PAGES = [
   "",
   "/team",
-  "/platform",
   "/catalyst",
-  "/partners",
   "/news",
   "/quiz",
   "/beyond-code-centers",
   "/beyond-the-game",
-  "/code-along",
   "/privacy",
   "/terms",
 ];
