@@ -21,9 +21,13 @@ export default function NewsArticle() {
   const params = useParams();
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
 
-  const posts = normalizeNews(t.raw("items"));
+  // includeDrafts so an unpublished piece still resolves for review; the
+  // related-posts rail below is built from published posts only.
+  const posts = normalizeNews(t.raw("items"), { includeDrafts: true });
   const post = posts.find((p) => p.slug === slug);
-  const more = posts.filter((p) => p.slug !== slug).slice(0, 3);
+  const more = posts
+    .filter((p) => p.slug !== slug && !p.draft)
+    .slice(0, 3);
 
   // Portrait headshots (taller than wide) get cropped to a sliver — only the
   // eyes — inside a wide 16:9 frame. Detect the natural ratio on load and give

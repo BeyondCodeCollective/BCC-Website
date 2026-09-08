@@ -21,10 +21,16 @@ const PAGES = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const newsItems = (landing.news?.items ?? []) as { slug?: string; date?: string }[];
+  const newsItems = (landing.news?.items ?? []) as {
+    slug?: string;
+    date?: string;
+    draft?: boolean;
+  }[];
   const paths = [
     ...PAGES,
-    ...newsItems.filter((p) => p.slug).map((p) => `/news/${p.slug}`),
+    ...newsItems
+      .filter((p) => p.slug && !p.draft)
+      .map((p) => `/news/${p.slug}`),
   ];
 
   return paths.flatMap((path) =>

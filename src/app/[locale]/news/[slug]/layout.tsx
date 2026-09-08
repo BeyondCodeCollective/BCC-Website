@@ -13,7 +13,7 @@ export async function generateMetadata({
   const messages = (await getMessages({ locale })) as {
     news?: { items?: unknown };
   };
-  const posts = normalizeNews(messages.news?.items);
+  const posts = normalizeNews(messages.news?.items, { includeDrafts: true });
   const post = posts.find((p) => p.slug === slug);
   if (!post) return {};
 
@@ -22,6 +22,8 @@ export async function generateMetadata({
     : `${SITE_URL}${post.image}`;
 
   return {
+    // A draft is shareable by link but must never enter the index.
+    ...(post.draft ? { robots: { index: false, follow: false } } : {}),
     alternates: {
       canonical: `${SITE_URL}/${locale}/news/${slug}`,
       languages: {
@@ -65,7 +67,9 @@ export default async function NewsArticleLayout({
   const messages = (await getMessages({ locale })) as {
     news?: { items?: unknown };
   };
-  const post = normalizeNews(messages.news?.items).find((p) => p.slug === slug);
+  const post = normalizeNews(messages.news?.items, {
+    includeDrafts: true,
+  }).find((p) => p.slug === slug);
 
   const publisher = {
     "@type": "Organization",

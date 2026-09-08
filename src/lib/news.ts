@@ -9,6 +9,12 @@ export interface NewsPost {
   body: string;
   /** Bylined author. Omitted for posts written as the organization. */
   author?: string;
+  /**
+   * Unpublished. Kept out of every listing and the sitemap, and served
+   * noindex, but the URL still resolves so the piece can be shared for
+   * review before it goes live.
+   */
+  draft?: boolean;
   linkUrl?: string;
   linkLabel?: string;
   links?: { label: string; url: string; description?: string }[];
@@ -19,11 +25,19 @@ export interface NewsPost {
  * Normalize the raw `news.items` array from the i18n messages.
  * Drops malformed entries and sorts newest-first by ISO date so the
  * display order is predictable regardless of how staff arrange them in admin.
+ *
+ * Drafts are excluded by default, so a new listing surface cannot leak one by
+ * forgetting to filter. Pass `includeDrafts` only where a draft must resolve:
+ * the article route itself, which serves it noindex for review.
  */
-export function normalizeNews(raw: unknown): NewsPost[] {
+export function normalizeNews(
+  raw: unknown,
+  { includeDrafts = false }: { includeDrafts?: boolean } = {},
+): NewsPost[] {
   if (!Array.isArray(raw)) return [];
   return (raw as Partial<NewsPost>[])
     .filter((p): p is NewsPost => !!p && !!p.slug && !!p.title)
+    .filter((p) => includeDrafts || !p.draft)
     .slice()
     .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 }
