@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
 import { normalizeNews } from "@/lib/news";
 
@@ -15,7 +16,9 @@ export async function generateMetadata({
   };
   const posts = normalizeNews(messages.news?.items, { includeDrafts: true });
   const post = posts.find((p) => p.slug === slug);
-  if (!post) return {};
+  // Drafts answer 404, so they get no title, description or OG tags
+  // either — otherwise the not-found page still advertises the piece.
+  if (!post || post.draft) return {};
 
   const image = post.image.startsWith("http")
     ? post.image
@@ -70,6 +73,10 @@ export default async function NewsArticleLayout({
   const post = normalizeNews(messages.news?.items, {
     includeDrafts: true,
   }).find((p) => p.slug === slug);
+
+  // A draft is not a page yet: return a real 404 rather than serving the
+  // piece to anyone holding the link.
+  if (post?.draft) notFound();
 
   const publisher = {
     "@type": "Organization",

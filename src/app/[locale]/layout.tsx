@@ -96,6 +96,18 @@ export default async function LocaleLayout({
   const { locale } = await params;
   const messages = await getMessages();
 
+  // next-intl serializes every message into the client payload, so a draft
+  // post would ship its full text to the browser on any page that loads the
+  // provider. Strip drafts here: the server still reads the unfiltered
+  // messages (the article route uses them to answer with a 404).
+  const news = messages.news as { items?: { draft?: boolean }[] } | undefined;
+  const clientMessages = Array.isArray(news?.items)
+    ? {
+        ...messages,
+        news: { ...news, items: news.items.filter((i) => !i?.draft) },
+      }
+    : messages;
+
   // Organization schema: ties "BCC" the acronym to the full name, the logo,
   // the social profiles and the founder in Google's knowledge graph.
   const orgJsonLd = {
@@ -124,7 +136,7 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={clientMessages}>
           <ContactProvider>{children}</ContactProvider>
           <Analytics />
           <SpeedInsights />
