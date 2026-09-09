@@ -21,9 +21,9 @@ const SUBSCRIBE_URL = "https://www.youtube.com/@blackgirlscode?sub_confirmation=
 // trailer section shows a "coming soon" placeholder.
 const TRAILER_ID: string | null = null;
 
-// Season launches Saturday, August 8, 2026 (noon ET). Drop each episode's YouTube ID
+// Season launches Saturday, September 12, 2026 (noon ET). Drop each episode's YouTube ID
 // here as it goes live — cards flip from locked stills to playable embeds.
-const PREMIERE_DATE = new Date("2026-08-08T12:00:00-04:00");
+const PREMIERE_DATE = new Date("2026-09-12T12:00:00-04:00");
 const EPISODES: { num: number; thumb: string; youtubeId: string | null }[] = [
   { num: 1, thumb: "/images/code-along/ep-1.jpg", youtubeId: null },
   { num: 2, thumb: "/images/code-along/ep-2.jpg", youtubeId: null },

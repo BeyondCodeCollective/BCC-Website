@@ -5,7 +5,7 @@ const BASE = "https://www.wearebcc.org";
 const LOCALES = ["en", "es"] as const;
 
 // Indexable marketing surfaces only. Anything carrying robots noindex
-// (platform, partners, code-along, rancho-cordova, theo-tech, links) stays
+// (platform, partners, rancho-cordova, theo-tech, links) stays
 // out: listing a noindex URL in the sitemap just asks Google to crawl a page
 // it is then told to drop. Gated pages and app surfaces stay out too.
 const PAGES = [
@@ -16,6 +16,7 @@ const PAGES = [
   "/quiz",
   "/beyond-code-centers",
   "/beyond-the-game",
+  "/code-along",
   "/privacy",
   "/terms",
 ];
